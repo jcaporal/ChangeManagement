@@ -93,74 +93,473 @@
       </div>
     </section>
 
-    <section id="view-modules" class="hidden space-y-4">
-      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
-        <h2 class="text-base font-bold text-slate-900 mb-2">Module 1: Organisational Context & Approach</h2>
-        <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
-          <div class="bg-sky-50/70 p-3 rounded-xl border border-sky-100">
-            <h3 class="font-semibold text-sky-900 mb-1">Cynefin Framework (Snowden)</h3>
-            <p><b>Simple/Obvious:</b> Stable; Best Practice; Sense-Categorise-Respond.</p>
-            <p><b>Complicated:</b> Knowable with experts; Good Practice; Sense-Analyse-Respond.</p>
-            <p><b>Complex:</b> Emergent; Safe-to-fail experiments; Probe-Sense-Respond.</p>
-            <p><b>Chaotic:</b> Crisis/no patterns; Act-Sense-Respond.</p>
-          </div>
+    <section id="view-modules" class="hidden space-y-5">
+
+      <!-- Textbook Header / Quick Filter Bar -->
+      <div class="bg-gradient-to-r from-sky-700 to-indigo-800 text-white p-4 rounded-2xl shadow-sm">
+        <span class="inline-block px-2.5 py-0.5 bg-sky-500/30 text-sky-100 rounded-full text-[10px] font-bold tracking-wider uppercase mb-1">
+          Complete Foundation Textbook
+        </span>
+        <h2 class="text-lg font-bold leading-tight">APMG Change Management Study Guide</h2>
+        <p class="text-xs text-sky-100/90 mt-1 leading-relaxed">
+          Comprehensive curriculum modules covering core theoretical foundations, behavioural psychology, role governance, and real-world corporate case studies.
+        </p>
+        <div class="flex gap-1.5 overflow-x-auto no-scrollbar pt-3 text-[11px]">
+          <a href="#mod-1" class="whitespace-nowrap px-3 py-1 bg-white/15 hover:bg-white/25 rounded-lg font-medium transition-colors">Mod 1: Context (OA)</a>
+          <a href="#mod-2" class="whitespace-nowrap px-3 py-1 bg-white/15 hover:bg-white/25 rounded-lg font-medium transition-colors">Mod 2: People (PC)</a>
+          <a href="#mod-3" class="whitespace-nowrap px-3 py-1 bg-white/15 hover:bg-white/25 rounded-lg font-medium transition-colors">Mod 3: Teams (CT)</a>
+          <a href="#mod-4" class="whitespace-nowrap px-3 py-1 bg-white/15 hover:bg-white/25 rounded-lg font-medium transition-colors">Mod 4: Stakeholders (SC)</a>
+          <a href="#mod-5" class="whitespace-nowrap px-3 py-1 bg-white/15 hover:bg-white/25 rounded-lg font-medium transition-colors">Mod 5: Practice (WM)</a>
+        </div>
+      </div>
+
+      <!-- MODULE 1: ORGANISATIONAL CONTEXT AND APPROACH -->
+      <div id="mod-1" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
           <div>
-            <h3 class="font-semibold text-slate-800">Planned vs Emergent Change</h3>
-            <p>Planned has defined endpoints and structured control. Emergent is experimental, continuous, and co-designed with front-line staff.</p>
+            <span class="text-[10px] font-bold text-sky-600 bg-sky-50 px-2 py-0.5 rounded-md uppercase tracking-wider">Module 1</span>
+            <h3 class="text-base font-bold text-slate-900 mt-0.5">Organisational Context & Approach (OA)</h3>
           </div>
+          <span class="text-xs text-slate-400 font-semibold">Syllabus Area 1</span>
+        </div>
+
+        <!-- 1.1 Internal & External Drivers -->
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-600"></span> 1.1 Drivers of Change: External vs. Internal Context
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Organizations do not exist in a vacuum; they operate inside a continuous flow of environmental and internal pressures that compel transformation:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 text-xs">
+              <span class="font-bold text-slate-900 block mb-1">🌍 External Drivers (PESTLE)</span>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Factors beyond the organization's direct control. Includes Political (legislation, trade treaties), Economic (inflation, recessions), Societal (demographic changes, hybrid work expectations), Technological (AI, cloud automation), and Legal/Environmental mandates.
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200/70 text-xs">
+              <span class="font-bold text-slate-900 block mb-1">🏢 Internal Drivers</span>
+              <p class="text-slate-600 text-[11px] leading-relaxed">
+                Pressures emerging from within: new corporate strategy, leadership transitions, operational performance gaps, culture clashes, change maturity level, and historical legacy of past changes.
+              </p>
+            </div>
+          </div>
+          <div class="p-3 bg-amber-50/80 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed">
+            <b>⚠️ The Critical Impact of "History of Change":</b> When organizations suffer from a legacy of failed, abandoned, or painful past changes, employees develop <i>change fatigue</i>, cynicism, and reflexive resistance. Conversely, organizations with transparent, well-delivered past changes have built psychological capital and trust.
+          </div>
+        </div>
+
+        <!-- 1.2 Cynefin Framework -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-600"></span> 1.2 The Cynefin Framework (Dave Snowden)
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            The Cynefin framework helps change leaders diagnose the nature of the operating environment so they don't apply rigid, bureaucratic recipes to emergent, unpredictable problems:
+          </p>
+
+          <div class="space-y-2 text-xs">
+            <div class="p-2.5 rounded-xl border border-emerald-200 bg-emerald-50/60">
+              <span class="font-bold text-emerald-900">1. Simple / Obvious Domain (Best Practice)</span>
+              <p class="text-emerald-800 mt-0.5 text-[11px] leading-relaxed">
+                <b>Characteristics:</b> Stable cause-and-effect relationship known to everyone. Predictable, repeatable.<br>
+                <b>Decision Flow:</b> <span class="font-semibold">Sense → Categorise → Respond.</span><br>
+                <b>🏢 Real-World Example:</b> Transitioning office printer supplies or rolling out standard HR expense reimbursement guidelines.
+              </p>
+            </div>
+
+            <div class="p-2.5 rounded-xl border border-sky-200 bg-sky-50/60">
+              <span class="font-bold text-sky-900">2. Complicated Domain (Good Practice)</span>
+              <p class="text-sky-800 mt-0.5 text-[11px] leading-relaxed">
+                <b>Characteristics:</b> Cause-and-effect is discoverable, but requires specialized expertise, technical diagnosis, and deep analysis.<br>
+                <b>Decision Flow:</b> <span class="font-semibold">Sense → Analyse → Respond.</span><br>
+                <b>🏢 Real-World Example:</b> Migrating legacy on-premise relational databases into an enterprise cloud architecture (AWS/Azure) requiring data architects.
+              </p>
+            </div>
+
+            <div class="p-2.5 rounded-xl border border-indigo-200 bg-indigo-50/60">
+              <span class="font-bold text-indigo-900">3. Complex Domain (Emergent Practice)</span>
+              <p class="text-indigo-800 mt-0.5 text-[11px] leading-relaxed">
+                <b>Characteristics:</b> Cause-and-effect can only be perceived in hindsight. The right questions are unknown. High interconnected human dynamics.<br>
+                <b>Decision Flow:</b> <span class="font-semibold">Probe → Sense → Respond.</span> Safe-to-fail experiments, rapid feedback loops, and co-design.<br>
+                <b>🏢 Real-World Example:</b> Attempting to transform a 50-year-old siloed bank hierarchy into a customer-centric, cross-functional agile innovation culture.
+              </p>
+            </div>
+
+            <div class="p-2.5 rounded-xl border border-rose-200 bg-rose-50/60">
+              <span class="font-bold text-rose-900">4. Chaotic Domain (Novel Practice)</span>
+              <p class="text-rose-800 mt-0.5 text-[11px] leading-relaxed">
+                <b>Characteristics:</b> Immediate crisis; turbulence; no clear cause-and-effect patterns exist.<br>
+                <b>Decision Flow:</b> <span class="font-semibold">Act → Sense → Respond.</span> Take immediate directive command to stop the bleeding, restore order, and shift into Complex.<br>
+                <b>🏢 Real-World Example:</b> Immediate emergency response to a massive corporate ransomware attack locking all hospital surgical operations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1.3 Planned vs Emergent & Kelman -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-600"></span> 1.3 Planned vs. Emergent Change & Kelman's Adoption
+          </h4>
+          
+          <div class="overflow-x-auto text-[11px]">
+            <table class="w-full text-left border-collapse border border-slate-200 rounded-xl overflow-hidden">
+              <thead class="bg-slate-100 text-slate-800 font-bold">
+                <tr>
+                  <th class="p-2 border-b border-slate-200">Dimension</th>
+                  <th class="p-2 border-b border-slate-200">Planned Change</th>
+                  <th class="p-2 border-b border-slate-200">Emergent Change</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 text-slate-600">
+                <tr>
+                  <td class="p-2 font-semibold text-slate-800">Starting Point & Goals</td>
+                  <td class="p-2">Clear beginning, defined intermediate milestones, fixed endpoint.</td>
+                  <td class="p-2">Direction is clear, but exact destination evolves iteratively.</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-semibold text-slate-800">Management Style</td>
+                  <td class="p-2">Programmed, structured, sequential control (Waterfall-like).</td>
+                  <td class="p-2">Experimental, participatory co-design, learning-by-doing.</td>
+                </tr>
+                <tr>
+                  <td class="p-2 font-semibold text-slate-800">Best Suited For</td>
+                  <td class="p-2">Office relocations, regulatory compliance, ERP migrations.</td>
+                  <td class="p-2">Culture transformation, continuous service improvement, innovation.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Kelman's Adoption Levels -->
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5 text-xs">
+            <span class="font-bold text-slate-900 block">Kelman’s Three Levels of Adoption:</span>
+            <ul class="space-y-1 text-slate-600 text-[11px] leading-relaxed">
+              <li>• <b>1. Compliance (Surface Level):</b> Staff adopt new behaviours solely to secure incentives or avoid disciplinary action. Reverts immediately when supervision disappears.</li>
+              <li>• <b>2. Identification (Relational Level):</b> Staff adopt new practices to maintain positive rapport with or belong to a respected leader or team.</li>
+              <li>• <b>3. Internalization (Deep Level):</b> The change resonates directly with the individual's core beliefs and values. The behaviour becomes permanent, autonomous, and self-sustaining.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 1.4 Benefits Realization -->
+        <div class="p-3 bg-sky-50/70 rounded-xl border border-sky-200 text-xs space-y-1 text-sky-950">
+          <span class="font-bold text-sky-900 block">🎯 Exam Rule: Ownership of Benefits</span>
+          <p class="text-[11px] leading-relaxed">
+            <b>Business Leadership</b> is ultimately accountable for realizing business benefits. The <b>Change Manager</b> does not own the benefits; instead, the Change Manager facilitates the human readiness, engagement architectures, and adoption environments that enable business leaders to harvest those benefits.
+          </p>
+        </div>
+      </div>
+
+      <!-- MODULE 2: PEOPLE AND CHANGE -->
+      <div id="mod-2" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
           <div>
-            <h3 class="font-semibold text-slate-800">Kelman's Three Levels of Adoption</h3>
-            <p>1. <b>Compliance:</b> To earn rewards or avoid penalties (surface level).<br>
-            2. <b>Identification:</b> To belong or maintain respect for leaders.<br>
-            3. <b>Internalization:</b> Deep value alignment; becomes self-sustaining.</p>
+            <span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md uppercase tracking-wider">Module 2</span>
+            <h3 class="text-base font-bold text-slate-900 mt-0.5">People and Change (PC)</h3>
+          </div>
+          <span class="text-xs text-slate-400 font-semibold">Syllabus Area 2</span>
+        </div>
+
+        <!-- 2.1 Conscious Competence & Learning Dip -->
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> 2.1 Conscious Competence Learning Curve & The "Learning Dip"
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Whenever individuals are asked to adopt a new system, tool, or behavior, their performance does not improve linearly. Noel Burch’s model explains why performance inevitably plunges before it ascends:
+          </p>
+
+          <div class="space-y-2 text-xs">
+            <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700">
+              <span class="font-bold text-slate-900">Stage 1: Unconscious Incompetence ("Blissful Ignorance")</span>
+              <p class="text-[11px] text-slate-600 mt-0.5">The user does not know what they do not know. They believe the change is easy because they have not yet touched the operational complexity.</p>
+            </div>
+
+            <div class="p-2.5 rounded-xl border border-rose-300 bg-rose-50/80 text-rose-950">
+              <span class="font-bold text-rose-900">Stage 2: Conscious Incompetence (THE LEARNING DIP 📉)</span>
+              <p class="text-[11px] text-rose-900/90 mt-0.5 leading-relaxed">
+                The user begins working in the new reality and suddenly experiences friction: they cannot find function buttons, tasks take three times longer, errors spike, and confidence evaporates.
+                <br><b>🏢 Real-World Example:</b> A customer service rep who used to handle 20 calls/hour on an old mainframe is switched to a modern CRM and can only handle 6 calls/hour because they are hunting for fields.
+                <br><b>Management Imperative:</b> Provide patience, peer coaches, psychological safety, and realistic transition productivity targets.
+              </p>
+            </div>
+
+            <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-700">
+              <span class="font-bold text-slate-900">Stage 3: Conscious Competence ("Concentrated Effort")</span>
+              <p class="text-[11px] text-slate-600 mt-0.5">The user can perform the task successfully, but every step requires deliberate, conscious cognitive focus and checklist verification.</p>
+            </div>
+
+            <div class="p-2.5 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-950">
+              <span class="font-bold text-emerald-900">Stage 4: Unconscious Competence ("Second Nature Mastery")</span>
+              <p class="text-[11px] text-emerald-900/90 mt-0.5">Execution is fluid, intuitive, and automatic. Cognitive energy is freed for creative problem solving.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2.2 Beckhard & Harris Change Formula -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> 2.2 Beckhard & Harris Change Formula: D × V × F > R
+          </h4>
+          <div class="p-3 bg-slate-900 text-sky-300 rounded-xl font-mono text-center text-xs tracking-wider">
+            Dissatisfaction (D) × Vision (V) × First Steps (F) &gt; Resistance (R)
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            This is a <b>diagnostic formula</b> used to evaluate where to concentrate intervention efforts. Because the left side is a mathematical product:
+          </p>
+          <ul class="text-xs text-slate-600 space-y-1 list-disc pl-4 text-[11px] leading-relaxed">
+            <li><b>Dissatisfaction (D):</b> People must see why the current state is intolerable (urgency). If $D = 0$, complacency kills change.</li>
+            <li><b>Vision (V):</b> A clear, tangible future state that people want to inhabit. If $V = 0$, anxiety and confusion reign.</li>
+            <li><b>First Steps (F):</b> Achievable, actionable starting steps. If $F = 0$, people feel paralyzed by the sheer size of the mountain.</li>
+            <li><b>The Zero Rule:</b> If ANY factor ($D$, $V$, or $F$) equals 0, the entire left side becomes 0. Resistance ($R$) automatically wins!</li>
+          </ul>
+        </div>
+
+        <!-- 2.3 Edgar Schein: Learning vs Survival Anxiety -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> 2.3 Edgar Schein: Survival Anxiety vs. Learning Anxiety
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            MIT organizational psychologist Edgar Schein established that change only begins when:
+          </p>
+          <div class="p-2.5 bg-indigo-50 border border-indigo-200 rounded-xl text-center text-xs font-bold text-indigo-900 font-mono">
+            Survival Anxiety &gt; Learning Anxiety
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="font-bold text-slate-900 block mb-0.5">Survival Anxiety (Urgency)</span>
+              The fear that if we do not adapt, the organization will fail, our skills will become obsolete, or our jobs will disappear.
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="font-bold text-slate-900 block mb-0.5">Learning Anxiety (Barrier)</span>
+              The social and personal fear of looking stupid, feeling incompetent during transition, or losing status.
+            </div>
+          </div>
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed">
+            <b>💡 Key Leadership Takeaway:</b> You can create movement either by increasing survival anxiety (threatening people) or by <b>reducing learning anxiety</b>. Schein proved that increasing fear triggers defensive hostility; the only healthy, sustainable path is reducing learning anxiety through <b>Psychological Safety</b>, training, and coaching.
+          </div>
+        </div>
+
+        <!-- 2.4 Rosabeth Moss Kanter: Resistance Drivers -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> 2.4 Kanter's Resistance Drivers & Interventions
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px]">
+            <div class="p-2.5 rounded-xl bg-emerald-50 border border-emerald-200">
+              <span class="font-bold text-emerald-900 block">Loss of Control / Territory</span>
+              <p class="text-emerald-800 mt-1"><b>Solution: EMPOWERMENT.</b> Give them choices, autonomy, and participation in co-designing the local workflow.</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-200">
+              <span class="font-bold text-sky-900 block">Excess Uncertainty</span>
+              <p class="text-sky-800 mt-1"><b>Solution: INFORMATION.</b> Provide consistent, structured, transparent communication updates.</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-indigo-50 border border-indigo-200">
+              <span class="font-bold text-indigo-900 block">Fear of Incompetence</span>
+              <p class="text-indigo-800 mt-1"><b>Solution: TRAINING & SUPPORT.</b> Create safe sandbox environments and dedicated mentorship.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
-        <h2 class="text-base font-bold text-slate-900 mb-2">Module 2: People and Change</h2>
-        <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
-          <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-100">
-            <h3 class="font-semibold text-amber-900 mb-1">Conscious Competence Learning Curve</h3>
-            <p>1. Unconscious Incompetence<br>
-            2. <b>Conscious Incompetence (Learning Dip):</b> Friction, slow execution, confusion.<br>
-            3. Conscious Competence: Requires deliberate effort.<br>
-            4. Unconscious Competence: Second nature mastery.</p>
-          </div>
+      <!-- MODULE 3: CHANGE LEADERSHIP & TEAMS -->
+      <div id="mod-3" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
           <div>
-            <h3 class="font-semibold text-slate-800">Beckhard & Harris Formula</h3>
-            <p class="font-mono bg-slate-100 p-1.5 rounded my-1 text-slate-700">D × V × F > R</p>
-            <p>Dissatisfaction × Vision × First Steps must exceed Resistance. Because factors multiply, if any is 0, resistance prevails.</p>
+            <span class="text-[10px] font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md uppercase tracking-wider">Module 3</span>
+            <h3 class="text-base font-bold text-slate-900 mt-0.5">Change Leadership & Teams (CT)</h3>
           </div>
+          <span class="text-xs text-slate-400 font-semibold">Syllabus Area 3</span>
+        </div>
+
+        <!-- 3.1 Governance & Role Separation -->
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span> 3.1 Role Distinction & Communication Governance
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            One of the most heavily tested areas in APMG is knowing who owns what message and who holds ultimate accountability:
+          </p>
+
+          <div class="space-y-2 text-xs">
+            <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50">
+              <span class="font-bold text-slate-900">👑 The Sponsor (Executive Level)</span>
+              <p class="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
+                Secures funding, builds coalition at board level, breaks strategic deadlocks. Senders of the <b>high-level strategic "Why"</b> (business drivers, risks of inaction). They DO NOT manage day-to-day team tasks.
+              </p>
+            </div>
+
+            <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50">
+              <span class="font-bold text-slate-900">👔 Line Leader / Direct Supervisor</span>
+              <p class="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
+                Preferred sender of <b>Personal Impact ("What's In It For Me? / WIIFM")</b> messages. They contextualize the change for direct reports and manage daily operational adoption.
+              </p>
+            </div>
+
+            <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50">
+              <span class="font-bold text-slate-900">🛠️ Change Agent (Local Advocate)</span>
+              <p class="text-[11px] text-slate-600 mt-0.5 leading-relaxed">
+                Facilitator and network bridge. Shares feedback between front line and sponsors. <b>CRITICAL RULE:</b> Change agents must NEVER usurp or take over the line leader's operational authority!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3.2 Lencioni's 5 Dysfunctions -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span> 3.2 Patrick Lencioni's Five Dysfunctions of a Team
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Lencioni visualizes team dysfunction as a pyramid that must be cured from the bottom foundation upward:
+          </p>
+          <div class="space-y-1.5 text-xs">
+            <div class="p-2 rounded-lg bg-sky-900 text-white font-bold text-center text-[11px]">
+              5. INATTENTION TO RESULTS → Focus on Collective Team Results (The Apex)
+            </div>
+            <div class="p-2 rounded-lg bg-sky-800 text-sky-100 text-center text-[11px]">
+              4. AVOIDANCE OF ACCOUNTABILITY → Peer-to-Peer Mutual Accountability
+            </div>
+            <div class="p-2 rounded-lg bg-sky-700 text-sky-100 text-center text-[11px]">
+              3. LACK OF COMMITMENT → Clarity and Buy-In Behind Decisions
+            </div>
+            <div class="p-2 rounded-lg bg-sky-600 text-sky-100 text-center text-[11px]">
+              2. FEAR OF CONFLICT → Passionate, Unfiltered Conflict over Ideas
+            </div>
+            <div class="p-2 rounded-lg bg-sky-500 text-sky-100 text-center text-[11px] font-semibold">
+              1. ABSENCE OF TRUST → Vulnerability-Based Trust (Foundation)
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-600 leading-relaxed pt-1">
+            <b>Exam Focus:</b> "Focus on Team Results" follows on from all other levels. You cannot demand focus on team results if members distrust each other, avoid conflict, and refuse to hold one another accountable.
+          </p>
+        </div>
+      </div>
+
+      <!-- MODULE 4: STAKEHOLDERS AND COMMUNICATION -->
+      <div id="mod-4" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
           <div>
-            <h3 class="font-semibold text-slate-800">Edgar Schein: Survival vs Learning Anxiety</h3>
-            <p>Change occurs when <b>Survival Anxiety > Learning Anxiety</b>. Leaders must lower learning anxiety through Psychological Safety and training, rather than only scaring teams.</p>
+            <span class="text-[10px] font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-md uppercase tracking-wider">Module 4</span>
+            <h3 class="text-base font-bold text-slate-900 mt-0.5">Stakeholders & Communication (SC)</h3>
+          </div>
+          <span class="text-xs text-slate-400 font-semibold">Syllabus Area 4</span>
+        </div>
+
+        <!-- 4.1 Carolyn Taylor Culture Mechanisms -->
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-600"></span> 4.1 Carolyn Taylor: Culture Communication Mechanisms
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            In <i>Walking the Talk</i>, Carolyn Taylor defines culture as "the patterns of behaviour that are encouraged, discouraged, or tolerated by people and systems over time." Culture is broadcast via 3 mechanisms:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="font-bold text-slate-900 block mb-1">1. Behaviours</span>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                Day-to-day interactions: how leaders run meetings, respond to mistakes, treat frontline staff, and role-model values.
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-amber-50/80 border border-amber-200 text-amber-950">
+              <span class="font-bold text-amber-900 block mb-1">2. Symbols (HIGH EXAM VALUE)</span>
+              <p class="text-[11px] leading-relaxed">
+                Visible signals: <b>how leaders structure and spend their time</b>, physical office layouts, who gets promoted, and budget allocations.
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="font-bold text-slate-900 block mb-1">3. Systems</span>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                Formal mechanisms: HR compensation policies, KPIs, procurement workflows, and IT operating frameworks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4.2 Channels and Media Richness -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-600"></span> 4.2 Communication Channel Dynamics
+          </h4>
+          <div class="space-y-1.5 text-xs text-slate-600 text-[11px] leading-relaxed">
+            <p>• <b>One-Way vs. Two-Way:</b> A poster advertising campaign or company newsletter is <i>one-way, lean, asynchronous</i> broadcast. Two-way verbal dialogue (town halls, 1-on-1s) enables feedback and dynamic clarification.</p>
+            <p>• <b>Contextualizing for Diverse Audiences:</b> <b>Verbal dialogue</b> is by far the most effective approach for tailoring complex strategic messages to the unique needs of diverse operational teams.</p>
+            <p>• <b>Narrative and Storytelling:</b> Sharing past experiences and authentic personal stories cuts through corporate jargon and creates emotional resonance.</p>
           </div>
         </div>
       </div>
 
-      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
-        <h2 class="text-base font-bold text-slate-900 mb-2">Module 3: Leadership, Teams & Culture</h2>
-        <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+      <!-- MODULE 5: WORK OF THE CHANGE MANAGER -->
+      <div id="mod-5" class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
           <div>
-            <h3 class="font-semibold text-slate-800">Lencioni's 5 Dysfunctions (Bottom Up)</h3>
-            <p>1. Trust → 2. Constructive Conflict → 3. Commitment → 4. Mutual Accountability → 5. <b>Focus on Team Results</b> (apex follows all others).</p>
+            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md uppercase tracking-wider">Module 5</span>
+            <h3 class="text-base font-bold text-slate-900 mt-0.5">Work of the Change Manager (WM)</h3>
           </div>
-          <div class="bg-indigo-50/70 p-3 rounded-xl border border-indigo-100">
-            <h3 class="font-semibold text-indigo-900 mb-1">Carolyn Taylor Culture Mechanisms</h3>
-            <p><b>Symbols:</b> How leaders spend time, promote, or allocate funds.<br>
-            <b>Behaviours:</b> Day-to-day actions and role-modeling.<br>
-            <b>Systems:</b> Formal policies, KPIs, IT tools, and incentives.</p>
+          <span class="text-xs text-slate-400 font-semibold">Syllabus Area 5</span>
+        </div>
+
+        <!-- 5.1 Change Strategy vs Business Case -->
+        <div class="space-y-2">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> 5.1 Change Strategy vs. Business Case
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="font-bold text-slate-900 block mb-0.5">Business Case ("Why Invest?")</span>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                Strategic and financial justification. Outlines financial ROI, investment risks, market opportunities, and project deliverables.
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <span class="font-bold text-slate-900 block mb-0.5">Change Strategy ("How to Manage?")</span>
+              <p class="text-[11px] text-slate-600 leading-relaxed">
+                Explains how the human transition will be governed, supported, measured, and sustained. Sets adoption milestones and training approaches.
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 class="font-semibold text-slate-800">Roles Distinction</h3>
-            <p>• <b>Business Leader:</b> Owns benefits realization.<br>
-            • <b>Sponsor:</b> Owns strategic vision & budget.<br>
-            • <b>Line Leader:</b> Owns local WIIFM impact communication.<br>
-            • <b>Change Manager:</b> Facilitates and structures human enablement.</p>
+        </div>
+
+        <!-- 5.2 Metrics: Quantitative vs Qualitative -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> 5.2 Metrics & Delivery Scorecards
+          </h4>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            When designing a <b>Change Delivery Scorecard</b>, the defining selection criterion is <b>Relevance</b>—ensuring every KPI tracks actionable progress toward strategic goals.
+          </p>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] space-y-1.5">
+            <p>• <b>Quantitative Data:</b> Number-based, countable, measurable (e.g., login counts, ticket volumes, completion % rates). Answers <i>"What and how much?"</i></p>
+            <p>• <b>Qualitative Data:</b> Descriptive, narrative feedback (e.g., interview transcripts, focus group notes, sentiment surveys). Answers <i>"Why and how did this happen?"</i></p>
+          </div>
+        </div>
+
+        <!-- 5.3 Agile Change Practices -->
+        <div class="space-y-2 pt-2 border-t border-slate-100">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wide flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> 5.3 Agile Change Frameworks
+          </h4>
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 rounded-xl bg-sky-50 border border-sky-100 text-sky-950">
+              <b>Minimum Viable Change:</b> Used in <b>Prioritization</b> to select the smallest high-value change increment.
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+              <b>Kanban:</b> Visual work-in-progress (WIP) flow to prevent capacity overload.
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+              <b>Daily Stand-Ups:</b> 15-minute daily operational check-in to clear task blockers.
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-800">
+              <b>Retrospectives:</b> Post-sprint reflective learning to continually adjust.
+            </div>
           </div>
         </div>
       </div>
+
     </section>
 
     <section id="view-matrix" class="hidden space-y-4">
