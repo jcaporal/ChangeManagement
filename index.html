@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>APMG Change Management Foundation Mobile Reviewer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    -webkit-tap-highlight-color: transparent;
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col pb-20">
+
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-4 py-3 shadow-xs">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <span class="bg-sky-600 text-white p-1.5 rounded-lg text-sm font-bold">CM</span>
+        <div>
+          <h1 class="text-sm font-bold leading-tight text-slate-900">APMG Change Mgmt</h1>
+          <p class="text-[11px] text-slate-500 font-medium">Foundation Mobile Guide</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-1.5">
+        <span id="score-badge" class="hidden text-xs font-semibold px-2 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">
+          0/0
+        </span>
+        <button id="theme-toggle" class="p-2 text-slate-500 hover:text-slate-700 rounded-lg text-xs font-medium border border-slate-200">
+          ☀️
+        </button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-3 gap-1 mt-3 bg-slate-100 p-1 rounded-xl text-xs font-semibold">
+      <button onclick="switchTab('questions')" id="tab-questions" class="py-2 text-center rounded-lg bg-white shadow-xs text-sky-700 transition-all">
+        Practice (Q1-50)
+      </button>
+      <button onclick="switchTab('modules')" id="tab-modules" class="py-2 text-center rounded-lg text-slate-600 transition-all">
+        Textbook
+      </button>
+      <button onclick="switchTab('matrix')" id="tab-matrix" class="py-2 text-center rounded-lg text-slate-600 transition-all">
+        Cheat Sheet
+      </button>
+    </div>
+  </header>
+
+  <main class="flex-1 px-4 py-4 max-w-xl mx-auto w-full">
+    
+    <!-- Tab 1: Interactive Practice Questions -->
+    <section id="view-questions" class="space-y-4">
+      
+      <!-- Filter Bar -->
+      <div class="bg-white p-3 rounded-2xl border border-slate-200 shadow-xs space-y-2">
+        <div class="relative">
+          <input type="text" id="search-input" oninput="filterQuestions()" placeholder="Search terms (e.g., Schein, Kanban, Kanter)..." 
+                 class="w-full pl-8 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500">
+          <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
+        </div>
+        <div class="flex gap-1.5 overflow-x-auto no-scrollbar pt-1 text-[11px]">
+          <button onclick="filterDomain('ALL')" class="domain-btn whitespace-nowrap px-2.5 py-1 rounded-full bg-sky-600 text-white font-medium" data-domain="ALL">All (50)</button>
+          <button onclick="filterDomain('OA')" class="domain-btn whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium" data-domain="OA">OA</button>
+          <button onclick="filterDomain('PC')" class="domain-btn whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium" data-domain="PC">PC</button>
+          <button onclick="filterDomain('CT')" class="domain-btn whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium" data-domain="CT">CT</button>
+          <button onclick="filterDomain('SC')" class="domain-btn whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium" data-domain="SC">SC</button>
+          <button onclick="filterDomain('WM')" class="domain-btn whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium" data-domain="WM">WM</button>
+        </div>
+      </div>
+
+      <!-- Question List Container -->
+      <div id="questions-container" class="space-y-4">
+        <!-- Injected via JavaScript -->
+      </div>
+    </section>
+
+    <section id="view-modules" class="hidden space-y-4">
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+        <h2 class="text-base font-bold text-slate-900 mb-2">Module 1: Organisational Context & Approach</h2>
+        <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+          <div class="bg-sky-50/70 p-3 rounded-xl border border-sky-100">
+            <h3 class="font-semibold text-sky-900 mb-1">Cynefin Framework (Snowden)</h3>
+            <p><b>Simple/Obvious:</b> Stable; Best Practice; Sense-Categorise-Respond.</p>
+            <p><b>Complicated:</b> Knowable with experts; Good Practice; Sense-Analyse-Respond.</p>
+            <p><b>Complex:</b> Emergent; Safe-to-fail experiments; Probe-Sense-Respond.</p>
+            <p><b>Chaotic:</b> Crisis/no patterns; Act-Sense-Respond.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-800">Planned vs Emergent Change</h3>
+            <p>Planned has defined endpoints and structured control. Emergent is experimental, continuous, and co-designed with front-line staff.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-800">Kelman's Three Levels of Adoption</h3>
+            <p>1. <b>Compliance:</b> To earn rewards or avoid penalties (surface level).<br>
+            2. <b>Identification:</b> To belong or maintain respect for leaders.<br>
+            3. <b>Internalization:</b> Deep value alignment; becomes self-sustaining.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+        <h2 class="text-base font-bold text-slate-900 mb-2">Module 2: People and Change</h2>
+        <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+          <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-100">
+            <h3 class="font-semibold text-amber-900 mb-1">Conscious Competence Learning Curve</h3>
+            <p>1. Unconscious Incompetence<br>
+            2. <b>Conscious Incompetence (Learning Dip):</b> Friction, slow execution, confusion.<br>
+            3. Conscious Competence: Requires deliberate effort.<br>
+            4. Unconscious Competence: Second nature mastery.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-800">Beckhard & Harris Formula</h3>
+            <p class="font-mono bg-slate-100 p-1.5 rounded my-1 text-slate-700">D × V × F > R</p>
+            <p>Dissatisfaction × Vision × First Steps must exceed Resistance. Because factors multiply, if any is 0, resistance prevails.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-800">Edgar Schein: Survival vs Learning Anxiety</h3>
+            <p>Change occurs when <b>Survival Anxiety > Learning Anxiety</b>. Leaders must lower learning anxiety through Psychological Safety and training, rather than only scaring teams.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
+        <h2 class="text-base font-bold text-slate-900 mb-2">Module 3: Leadership, Teams & Culture</h2>
+        <div class="space-y-3 text-xs text-slate-600 leading-relaxed">
+          <div>
+            <h3 class="font-semibold text-slate-800">Lencioni's 5 Dysfunctions (Bottom Up)</h3>
+            <p>1. Trust → 2. Constructive Conflict → 3. Commitment → 4. Mutual Accountability → 5. <b>Focus on Team Results</b> (apex follows all others).</p>
+          </div>
+          <div class="bg-indigo-50/70 p-3 rounded-xl border border-indigo-100">
+            <h3 class="font-semibold text-indigo-900 mb-1">Carolyn Taylor Culture Mechanisms</h3>
+            <p><b>Symbols:</b> How leaders spend time, promote, or allocate funds.<br>
+            <b>Behaviours:</b> Day-to-day actions and role-modeling.<br>
+            <b>Systems:</b> Formal policies, KPIs, IT tools, and incentives.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold text-slate-800">Roles Distinction</h3>
+            <p>• <b>Business Leader:</b> Owns benefits realization.<br>
+            • <b>Sponsor:</b> Owns strategic vision & budget.<br>
+            • <b>Line Leader:</b> Owns local WIIFM impact communication.<br>
+            • <b>Change Manager:</b> Facilitates and structures human enablement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-matrix" class="hidden space-y-4">
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs space-y-3">
+        <h2 class="text-base font-bold text-slate-900">Author & Theory Cheat Sheet</h2>
+        
+        <div class="overflow-x-auto text-xs">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 text-sky-800 bg-sky-50/50">
+                <th class="p-2 font-semibold">Author / Model</th>
+                <th class="p-2 font-semibold">Key Takeaway</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-slate-700">
+              <tr>
+                <td class="p-2 font-semibold">Beckhard & Harris</td>
+                <td class="p-2">D × V × F > R (Diagnose & focus motivation).</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-semibold">Edgar Schein</td>
+                <td class="p-2">Survival Anxiety > Learning Anxiety (Lower learning anxiety).</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-semibold">Rosabeth Kanter</td>
+                <td class="p-2">Loss of control? Empower! Uncertainty? Give Information!</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-semibold">Carolyn Taylor</td>
+                <td class="p-2">Culture = Behaviours + Symbols (Leader Time) + Systems.</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-semibold">Patrick Lencioni</td>
+                <td class="p-2">Team Results is top apex following Trust, Conflict, Commitment, Accountability.</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-semibold">Honey & Mumford</td>
+                <td class="p-2">Theorists prefer structured concepts & seminars.</td>
+              </tr>
+              <tr>
+                <td class="p-2 font-semibold">Amy Edmondson</td>
+                <td class="p-2">Psychological safety works virtually; safe to speak out.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-xs text-xs space-y-2">
+        <h3 class="font-bold text-slate-900">Exam Strategy Golden Rules</h3>
+        <p class="text-slate-600">1. <b>Multi-statement questions:</b> Check statement 1 and statement 2 independently before picking options.</p>
+        <p class="text-slate-600">2. <b>Sender of messages:</b> Sponsor sends strategic vision; Line Manager sends personal/WIIFM context.</p>
+        <p class="text-slate-600">3. <b>Benefits:</b> Change managers never own benefits; Business Leaders do.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    const examQuestions = [
+      {
+        id: 1,
+        domain: "WM",
+        question: "During the Prioritization stage of the change management cycle, which agile change practice would be MOST useful?",
+        options: [
+          "Kanban",
+          "Stand-Up",
+          "Minimum Viable Change Practice",
+          "Retrospectives"
+        ],
+        correct: 2,
+        takeaway: "Minimum Viable Change (MVC) focuses on identifying the smallest, most impactful change increment to deliver value without exceeding organizational capacity.",
+        distractor: "Kanban is for WIP flow delivery; Stand-ups are daily blocker syncs; Retrospectives are post-cycle reflection reviews."
+      },
+      {
+        id: 2,
+        domain: "SC",
+        question: "Which of the following statements about psychological safety are true?\n1. It is an environment that cannot be created in a virtual meeting.\n2. It is an environment in which it is wiser not to speak out.",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 or 2 is true"
+        ],
+        correct: 3,
+        takeaway: "Psychological safety (Edmondson) encourages speaking up without fear and CAN be fostered virtually through intentional norms.",
+        distractor: "Statement 1 is false (virtual teams can foster safety). Statement 2 is false (safety encourages speaking up, not staying quiet)."
+      },
+      {
+        id: 3,
+        domain: "SC",
+        question: "What key principle, for building and maintaining engagement throughout change, is demonstrated by being curious about peoples lives and showing an interest in how they are feeling?",
+        options: [
+          "Inclusivity",
+          "Connectivity",
+          "Transparency",
+          "Empathy"
+        ],
+        correct: 3,
+        takeaway: "Empathy involves genuinely seeking to understand stakeholders' feelings, personal perspective, and transition experiences.",
+        distractor: "Inclusivity is about broad representation; Connectivity is about communication channels; Transparency is open information sharing."
+      },
+      {
+        id: 4,
+        domain: "PC",
+        question: "What is the objective of the 'change formula' (Beckhard and Harris)?",
+        options: [
+          "Calculate the cost and benefit of a change",
+          "Identify areas to focus on to increase motivation for change",
+          "Help create detailed plans for a change initiative",
+          "Identify skills and training requirements"
+        ],
+        correct: 1,
+        takeaway: "D x V x F > R is a diagnostic tool to pinpoint whether Dissatisfaction, Vision, or First Steps need reinforcement to overcome resistance.",
+        distractor: "Cost-benefit is financial; detailed plans belong to project plans; skills training is handled by ADKAR or capability frameworks."
+      },
+      {
+        id: 5,
+        domain: "SC",
+        question: "What needs to be established before you can plan how and when to engage with stakeholders?",
+        options: [
+          "Desired outcomes",
+          "Meeting schedules",
+          "Communication channels",
+          "Engagement strategy"
+        ],
+        correct: 0,
+        takeaway: "Defining desired outcomes dictates the appropriate engagement level, channels, and schedules.",
+        distractor: "Meeting schedules and channels are downstream tactical details; the engagement strategy itself is shaped by desired outcomes."
+      },
+      {
+        id: 6,
+        domain: "SC",
+        question: "Carolyn Taylor describes three mechanisms through which cultural messages are communicated. Which mechanism includes a significant change in the way leaders structure their time?",
+        options: [
+          "Behaviours",
+          "Symbols",
+          "Skills",
+          "Systems"
+        ],
+        correct: 1,
+        takeaway: "Leader time allocation, budget distribution, and office layout are major symbolic signals of organizational priorities.",
+        distractor: "Behaviours are day-to-day actions; Systems are policies/IT tools; Skills is not one of Taylor's three mechanisms."
+      },
+      {
+        id: 7,
+        domain: "OA",
+        question: "The severity of change impact at an organizational level will depend on several factors. Which of these factors is reflected in people's perception of previous change successes and failures?",
+        options: [
+          "The history of change in the organization",
+          "The environment",
+          "The change ability of the organization",
+          "The nature of change"
+        ],
+        correct: 0,
+        takeaway: "A poor change history generates cynicism and fatigue, while positive past changes build trust and resilience.",
+        distractor: "The environment is external PESTLE factors; Change ability is maturity/resource capability; Nature of change describes scope/type."
+      },
+      {
+        id: 8,
+        domain: "PC",
+        question: "Which of the following statements about learning and survival anxieties (Schein) are true?\n1. There must be a level of ‘survival anxiety’ for change to happen at an acceptable pace.\n2. ‘Learning anxiety’ should be kept as low as possible.",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 or 2 is true"
+        ],
+        correct: 2,
+        takeaway: "For change to happen, Survival Anxiety must exceed Learning Anxiety. Lowering learning anxiety reduces resistance.",
+        distractor: "Both are true: survival anxiety supplies urgency to move, while learning anxiety must be reduced via psychological safety."
+      },
+      {
+        id: 9,
+        domain: "PC",
+        question: "When dealing with resistance (Kanter), which would be MOST effective when dealing with an individuals perceived loss of control over territory?",
+        options: [
+          "Information",
+          "Incentive",
+          "Empowerment",
+          "Empathy"
+        ],
+        correct: 2,
+        takeaway: "Loss of control or territory is directly addressed by involving people and giving them choices (Empowerment).",
+        distractor: "Information resolves uncertainty; Incentive resolves lack of motivation; Empathy validates emotions but doesn't restore control."
+      },
+      {
+        id: 10,
+        domain: "SC",
+        question: "Which typical barrier to communication is reduced through the empowerment of teams?",
+        options: [
+          "Organizational hierarchy",
+          "Organizational culture",
+          "Technology",
+          "Amount of information"
+        ],
+        correct: 0,
+        takeaway: "Empowering autonomous teams flattens multi-tiered managerial layers and eliminates hierarchical communication bottlenecks.",
+        distractor: "Culture is shared values, not a structural pathway; Technology and Amount of Information are medium/volume barriers."
+      },
+      {
+        id: 11,
+        domain: "WM",
+        question: "Which factor should be considered when defining a change delivery scorecard?",
+        options: [
+          "Relevance",
+          "Risk",
+          "Reward",
+          "Reach"
+        ],
+        correct: 0,
+        takeaway: "Relevance ensures every metric directly tracks what matters toward business and adoption outcomes.",
+        distractor: "Risk belongs to the Risk Register; Reward relates to incentives; Reach is a specific communication metric rather than a scorecard criterion."
+      },
+      {
+        id: 12,
+        domain: "SC",
+        question: "When communicating change, what is necessary to help people understand which elements of the change they can contribute to?",
+        options: [
+          "Organizational hierarchy",
+          "Technology",
+          "Psychological safety",
+          "Clear boundaries"
+        ],
+        correct: 3,
+        takeaway: "Clear boundaries outline what is negotiable vs non-negotiable, directing stakeholder input where it truly counts.",
+        distractor: "Hierarchy often impedes input; Technology is a transmission tool; Psychological safety makes it safe to speak but doesn't define scope."
+      },
+      {
+        id: 13,
+        domain: "WM",
+        question: "Which of the following statements, about different type of metrics, are true?\n1. Quantitative data can help to understand how, why, or what happened behind certain behaviours.\n2. Qualitative data is number-based, countable, or measurable.",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 or 2 is true"
+        ],
+        correct: 3,
+        takeaway: "Both statements are reversed! Qualitative explains why/how; Quantitative is numerical and countable.",
+        distractor: "Statement 1 describes qualitative insights; Statement 2 describes quantitative metrics."
+      },
+      {
+        id: 14,
+        domain: "WM",
+        question: "Which of the following is a key purpose of a Change Strategy?",
+        options: [
+          "Recommend suppliers",
+          "Report progress",
+          "Explain how the change will be managed",
+          "Justify the change"
+        ],
+        correct: 2,
+        takeaway: "A Change Strategy explains how the human side of change will be approached, governed, and supported.",
+        distractor: "Justifying the change is the Business Case; Reporting progress is the Status Report; Recommending suppliers is Procurement."
+      },
+      {
+        id: 15,
+        domain: "SC",
+        question: "What effective communication and engagement approach is demonstrated by sharing past experience?",
+        options: [
+          "Symbolic actions and symbolism",
+          "Use of metaphors",
+          "Use of narrative and story",
+          "Animation and graphics"
+        ],
+        correct: 2,
+        takeaway: "Sharing personal experiences through narrative and storytelling creates authentic, emotionally resonant engagement.",
+        distractor: "Symbolic actions are non-verbal signals; Metaphors compare concepts abstractly; Graphics are visual formats."
+      },
+      {
+        id: 16,
+        domain: "CT",
+        question: "The five positive characteristics that should be developed when building an effective change team (Lencioni) build on one another. Which of these characteristics follows on from all others?",
+        options: [
+          "Focus on team results",
+          "Mutual accountability",
+          "Commitment and follow-through",
+          "Constructive conflict about ideas"
+        ],
+        correct: 0,
+        takeaway: "Focus on team results sits at the top apex of Lencioni's pyramid and depends on all preceding levels.",
+        distractor: "Conflict builds on Trust; Commitment builds on Conflict; Accountability builds on Commitment."
+      },
+      {
+        id: 17,
+        domain: "PC",
+        question: "Which example demonstrates a ‘learning dip’ for an individual who is using a new system, according to the conscious competence learning model?",
+        options: [
+          "Realising that an initial difficulty with new steps has now passed",
+          "Being unable to find a specific function button",
+          "Finding the system easy to use and navigate",
+          "Being able to perform all existing work but unaware of new functions"
+        ],
+        correct: 1,
+        takeaway: "The 'Learning Dip' occurs in Stage 2 (Conscious Incompetence), where sudden awareness of gaps creates friction and confusion.",
+        distractor: "Option A is moving into competence; Option C is unconscious competence; Option D is unconscious incompetence."
+      },
+      {
+        id: 18,
+        domain: "SC",
+        question: "Of the ways in which we communicate and connect with people, which is MOST effective for contextualising important messages for diverse audiences?",
+        options: [
+          "Non-verbal",
+          "Listening",
+          "Visual",
+          "Verbal"
+        ],
+        correct: 3,
+        takeaway: "Two-way verbal communication allows communicators to adapt phrasing and tailor meaning dynamically to diverse groups.",
+        distractor: "Non-verbal reinforces tone; Listening gathers feedback; Visuals aid memory but cannot dynamically adapt on the fly."
+      },
+      {
+        id: 19,
+        domain: "PC",
+        question: "According to Honey and Mumford's learning styles, which learning approach will BEST support change for an individual with a ‘theorist’ learning preference?",
+        options: [
+          "Coaching on carrying out the change from a respected practitioner",
+          "Observing others actually performing the change",
+          "Attending a seminar on the change",
+          "Attempting the change and reviewing progress with their manager"
+        ],
+        correct: 2,
+        takeaway: "Theorists learn through concepts, models, and logical structures, making formal seminars the ideal fit.",
+        distractor: "Coaching appeals to Pragmatists; Observation appeals to Reflectors; Hands-on attempts appeal to Activists."
+      },
+      {
+        id: 20,
+        domain: "CT",
+        question: "Which of the following statements about diverse teams are true?\n1. Provide narrower perspective.\n2. Decisions take longer.",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 or 2 is true"
+        ],
+        correct: 1,
+        takeaway: "Diverse teams broaden perspectives (Statement 1 is false), but harmonizing differing views requires more discussion time (Statement 2 is true).",
+        distractor: "Statement 1 is false because diverse backgrounds prevent narrow groupthink."
+      },
+      {
+        id: 21,
+        domain: "SC",
+        question: "Which communication channel characteristic is associated with a poster advertising campaign?",
+        options: [
+          "One way",
+          "Rich",
+          "Synchronous",
+          "Engaging"
+        ],
+        correct: 0,
+        takeaway: "Posters broadcast information in a single direction without immediate channels for feedback (One way).",
+        distractor: "Posters are lean (low richness), asynchronous (not real-time), and engaging is an outcome rather than a structural trait."
+      },
+      {
+        id: 22,
+        domain: "OA",
+        question: "Which of the following roles is ULTIMATELY accountable for the realization of business benefits?",
+        options: [
+          "Change Manager",
+          "Business Leadership",
+          "Project Manager",
+          "Change Agent"
+        ],
+        correct: 1,
+        takeaway: "Business leadership owns benefits realization; Change Managers facilitate and enable adoption but do not own business results.",
+        distractor: "Change managers design adoption plans; Project managers deliver technical outputs; Change agents facilitate local feedback."
+      },
+      {
+        id: 23,
+        domain: "OA",
+        question: "In the Cynefin framework, what is the appropriate leadership response in a 'Complex' environment?",
+        options: [
+          "Sense - Categorize - Respond",
+          "Sense - Analyze - Respond",
+          "Probe - Sense - Respond",
+          "Act - Sense - Respond"
+        ],
+        correct: 2,
+        takeaway: "Complex environments have unpredictable cause-and-effect; leaders must Probe (experiment), Sense (gather feedback), and Respond.",
+        distractor: "Sense-Categorize is Simple; Sense-Analyze is Complicated; Act-Sense is Chaotic."
+      },
+      {
+        id: 24,
+        domain: "SC",
+        question: "Who is the preferred sender for communicating personal impact ('What is in it for me?') to frontline employees?",
+        options: [
+          "Executive Sponsor",
+          "Change Manager",
+          "Direct Line Leader / Supervisor",
+          "External Consultant"
+        ],
+        correct: 2,
+        takeaway: "Direct supervisors/line leaders are best positioned to translate high-level strategies into day-to-day personal impacts.",
+        distractor: "Sponsors are best for organizational vision; Change managers provide frameworks; External consultants lack personal authority."
+      },
+      {
+        id: 25,
+        domain: "CT",
+        question: "Which function should a Change Agent avoid?",
+        options: [
+          "Sharing lessons from other line leaders",
+          "Discussing future resource requirements",
+          "Sharing information with sponsors and line leaders",
+          "Taking over the line leader's role"
+        ],
+        correct: 3,
+        takeaway: "Change agents facilitate and advise; they must never usurp the line leader's operational authority or responsibility.",
+        distractor: "Options A, B, and C are all key facilitation responsibilities of an effective change agent."
+      }
+    ];
+
+    let currentFilter = "ALL";
+    let answersState = {};
+
+    function renderQuestions() {
+      const container = document.getElementById("questions-container");
+      const searchVal = document.getElementById("search-input").value.toLowerCase();
+      container.innerHTML = "";
+
+      const filtered = examQuestions.filter(q => {
+        const matchesDomain = (currentFilter === "ALL" || q.domain === currentFilter);
+        const matchesSearch = q.question.toLowerCase().includes(searchVal) || 
+                              q.takeaway.toLowerCase().includes(searchVal);
+        return matchesDomain && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="text-center py-8 text-xs text-slate-400">No matching questions found.</div>`;
+        return;
+      }
+
+      filtered.forEach(q => {
+        const isAnswered = answersState[q.id] !== undefined;
+        const selectedOpt = answersState[q.id];
+
+        const card = document.createElement("div");
+        card.className = "bg-white p-4 rounded-2xl border border-slate-200 shadow-xs space-y-3";
+        
+        let optionsHtml = q.options.map((opt, idx) => {
+          let btnClass = "w-full text-left p-3 rounded-xl border text-xs transition-all ";
+          
+          if (!isAnswered) {
+            btnClass += "border-slate-200 bg-slate-50/50 hover:bg-sky-50 hover:border-sky-200 active:scale-[0.99]";
+          } else {
+            if (idx === q.correct) {
+              btnClass += "border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold ring-1 ring-emerald-400";
+            } else if (idx === selectedOpt && selectedOpt !== q.correct) {
+              btnClass += "border-rose-300 bg-rose-50 text-rose-800 line-through";
+            } else {
+              btnClass += "border-slate-100 bg-slate-50/40 text-slate-400";
+            }
+          }
+
+          return `<button onclick="selectOption(${q.id}, ${idx})" class="${btnClass}" ${isAnswered ? 'disabled' : ''}>
+            <span class="inline-block w-5 font-bold">${String.fromCharCode(65 + idx)}.</span> ${opt}
+          </button>`;
+        }).join("");
+
+        let explanationHtml = "";
+        if (isAnswered) {
+          explanationHtml = `
+            <div class="mt-3 pt-3 border-t border-slate-100 space-y-2 text-xs">
+              <div class="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100 text-emerald-900">
+                <span class="font-bold">Key Takeaway:</span> ${q.takeaway}
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-slate-600">
+                <span class="font-bold">Distractor Rationale:</span> ${q.distractor}
+              </div>
+            </div>
+          `;
+        }
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600">
+              Q${q.id} • ${q.domain}
+            </span>
+            ${isAnswered ? (selectedOpt === q.correct ? '<span class="text-emerald-600 text-xs font-bold">✓ Correct</span>' : '<span class="text-rose-500 text-xs font-bold">✗ Incorrect</span>') : ''}
+          </div>
+          <p class="text-xs font-semibold text-slate-800 leading-snug whitespace-pre-line">${q.question}</p>
+          <div class="space-y-2 pt-1">
+            ${optionsHtml}
+          </div>
+          ${explanationHtml}
+        `;
+
+        container.appendChild(card);
+      });
+
+      updateScoreBadge();
+    }
+
+    function selectOption(qId, optionIdx) {
+      if (answersState[qId] !== undefined) return;
+      answersState[qId] = optionIdx;
+      renderQuestions();
+    }
+
+    function updateScoreBadge() {
+      const badge = document.getElementById("score-badge");
+      const totalAnswered = Object.keys(answersState).length;
+      if (totalAnswered === 0) {
+        badge.classList.add("hidden");
+        return;
+      }
+      badge.classList.remove("hidden");
+      let correctCount = 0;
+      Object.keys(answersState).forEach(qId => {
+        const q = examQuestions.find(item => item.id == qId);
+        if (q && answersState[qId] === q.correct) correctCount++;
+      });
+      badge.textContent = `${correctCount}/${totalAnswered} Score`;
+    }
+
+    function switchTab(tabId) {
+      ['questions', 'modules', 'matrix'].forEach(t => {
+        document.getElementById(`view-${t}`).classList.add("hidden");
+        const tabBtn = document.getElementById(`tab-${t}`);
+        tabBtn.classList.remove("bg-white", "shadow-xs", "text-sky-700");
+        tabBtn.classList.add("text-slate-600");
+      });
+
+      document.getElementById(`view-${tabId}`).classList.remove("hidden");
+      const activeBtn = document.getElementById(`tab-${tabId}`);
+      activeBtn.classList.add("bg-white", "shadow-xs", "text-sky-700");
+      activeBtn.classList.remove("text-slate-600");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterDomain(domain) {
+      currentFilter = domain;
+      document.querySelectorAll(".domain-btn").forEach(btn => {
+        if (btn.getAttribute("data-domain") === domain) {
+          btn.className = "domain-btn whitespace-nowrap px-2.5 py-1 rounded-full bg-sky-600 text-white font-medium";
+        } else {
+          btn.className = "domain-btn whitespace-nowrap px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 font-medium";
+        }
+      });
+      renderQuestions();
+    }
+
+    function filterQuestions() {
+      renderQuestions();
+    }
+
+    // Toggle Light/Dark Preview
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+    });
+
+    // Initial Render
+    renderQuestions();
+  </script>
+</body>
+</html>
