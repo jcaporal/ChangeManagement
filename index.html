@@ -70,10 +70,28 @@
     <!-- Tab 1: Interactive Practice Questions -->
     <section id="view-questions" class="space-y-4">
       
+      <!-- Official Exam Score Banner -->
+      <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-3.5 rounded-2xl shadow-xs space-y-1.5">
+        <div class="flex items-center justify-between">
+          <span class="text-[10px] font-bold tracking-wider uppercase bg-white/20 px-2 py-0.5 rounded-full">Official Exam Result</span>
+          <span class="text-xs font-bold bg-white text-emerald-800 px-2 py-0.5 rounded-full shadow-xs">PASSED (88%)</span>
+        </div>
+        <div class="flex items-baseline justify-between pt-1">
+          <div>
+            <h3 class="text-base font-bold">Score: 44 / 50 Marks</h3>
+            <p class="text-[11px] text-emerald-100">Pass Mark: 25/50 • Exam Date: October 02, 2026</p>
+          </div>
+          <button onclick="toggleExamFilter('MISTAKES')" id="mistake-filter-btn" 
+                  class="text-[11px] font-semibold bg-emerald-800/80 hover:bg-emerald-900 border border-emerald-400/40 px-2.5 py-1.5 rounded-xl transition-all">
+            Review 6 Missed ⚠️
+          </button>
+        </div>
+      </div>
+
       <!-- Filter Bar -->
       <div class="bg-white p-3 rounded-2xl border border-slate-200 shadow-xs space-y-2">
         <div class="relative">
-          <input type="text" id="search-input" oninput="filterQuestions()" placeholder="Search terms (e.g., Schein, Kanban, Kanter)..." 
+          <input type="text" id="search-input" oninput="filterQuestions()" placeholder="Search terms (e.g., ADKAR, SCARF, Schein, Kelman, Pink)..." 
                  class="w-full pl-8 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500">
           <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
         </div>
@@ -622,6 +640,441 @@
     const examQuestions = [
       {
         id: 1,
+        domain: "PC",
+        question: "Which of the ADKAR® steps can be avoided?",
+        options: [
+          "Awareness",
+          "Desire",
+          "All of them",
+          "None of them"
+        ],
+        correct: 3,
+        userResponse: 3,
+        takeaway: "In Prosci's ADKAR model (Awareness, Desire, Knowledge, Ability, Reinforcement), every milestone is sequential and required; none can be skipped without jeopardizing sustainable adoption.",
+        distractor: "Skipping Awareness creates confusion; skipping Desire triggers active resistance; skipping Knowledge/Ability causes the learning dip to fail."
+      },
+      {
+        id: 2,
+        domain: "PC",
+        question: "Social neuroscience summarises 5 brain processes involved in social situations using the mnemonic SCARF.\n\nWhat does the 'C' represent?",
+        options: [
+          "Credibility",
+          "Consciousness",
+          "Certainty",
+          "Creativity"
+        ],
+        correct: 2,
+        userResponse: 2,
+        takeaway: "In David Rock's SCARF model (Status, Certainty, Autonomy, Relatedness, Fairness), 'C' stands for Certainty—the brain's fundamental craving for predictability.",
+        distractor: "Credibility, Consciousness, and Creativity are cognitive concepts but not components of the SCARF neuroscience domain."
+      },
+      {
+        id: 3,
+        domain: "CT",
+        question: "What role in the organizational change process must act without formal line authority?",
+        options: [
+          "Implementers",
+          "Sponsor",
+          "Line Leaders",
+          "Change-Agent"
+        ],
+        correct: 3,
+        userResponse: 3,
+        takeaway: "Change Agents act as network facilitators, influencers, and communication bridges, operating purely through personal power and influence without operational line authority.",
+        distractor: "Sponsors have senior organizational authority; Line Leaders hold direct managerial authority; Implementers carry formal task assignments."
+      },
+      {
+        id: 4,
+        domain: "PC",
+        question: "Which statement describes one of Dan Pink’s three key motivators for 'knowledge work'?",
+        options: [
+          "As long as people are paid enough, they will be motivated by their work",
+          "If staff feel able to take charge of their own work they will be motivated",
+          "High levels of job security will motivate people",
+          "Motivation comes from detailed processes that describe every aspect of a job"
+        ],
+        correct: 1,
+        userResponse: 1,
+        takeaway: "Daniel Pink's Drive framework identifies Autonomy (self-direction and taking charge of one's own work), Mastery, and Purpose as the primary intrinsic drivers for complex knowledge work.",
+        distractor: "Money (A) is a baseline hygiene factor; Job security (C) is a safety need (Maslow); Micro-processes (D) destroy autonomy."
+      },
+      {
+        id: 5,
+        domain: "WM",
+        question: "Which of the following capabilities is borrowed from Agile techniques, to improve the work of change management?",
+        options: [
+          "Assertive and creative thinking",
+          "Data informed decision-making",
+          "Proactive art of delegation",
+          "A structured escalation process"
+        ],
+        correct: 1,
+        userResponse: 1,
+        takeaway: "Agile methodologies emphasize rapid feedback loops, empirical evidence, and data-informed decision-making rather than rigid predetermined assumptions.",
+        distractor: "Creative thinking is a generic cognitive skill; Delegation is standard management; Structured escalation is traditional governance."
+      },
+      {
+        id: 6,
+        domain: "SC",
+        question: "What is the definition of a stakeholder?",
+        options: [
+          "Any person or entity that holds a financial stake in something of value",
+          "Someone who has an interest in or influence over the outcome the change is intending to achieve",
+          "An individual or legal entity that is registered by an organization as the legal owner",
+          "A person or organization that pays for or contributes to the costs involved in change"
+        ],
+        correct: 1,
+        userResponse: 1,
+        takeaway: "A stakeholder is formally defined as any individual or group who has an interest in, is affected by, or can exert influence over the outcome of the change.",
+        distractor: "Financial stakeholders (A, D) and legal owners (C) represent specific sub-types, but the core definition encompasses anyone impacted or with influence."
+      },
+      {
+        id: 7,
+        domain: "OA",
+        question: "How can the levels of adoption of change (Kelman) be used later in a change initiative?",
+        options: [
+          "As a maturity model against which change can be assessed and improvements planned",
+          "It provides ideas for measuring the success of change management.",
+          "It is a guide to assessing the interfaces between different change initiative.",
+          "As a management resource to help schedule and generate statistical data analysis"
+        ],
+        correct: 1,
+        userResponse: 0,
+        takeaway: "Kelman's adoption levels (Compliance, Identification, Internalization) provide qualitative criteria and benchmarks for measuring whether change has truly taken root or remains superficial.",
+        distractor: "Option A is incorrect because Kelman is an adoption depth framework, not an organizational capability maturity model like CMMI."
+      },
+      {
+        id: 8,
+        domain: "PC",
+        question: "Which of the following statements, about the ‘Myers–Briggs Type Indicator’ (MBTI)® model, are true?\n\n1. A 'J' preference indicates that a person is judgmental towards others\n2. Some preferences are better than others",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 nor 2 is true"
+        ],
+        correct: 3,
+        userResponse: 3,
+        takeaway: "In MBTI®, 'Judging' (J) simply refers to a lifestyle preference for structure, planning, and closure (not being judgmental), and all preferences are treated as equally valid and valuable.",
+        distractor: "Statement 1 is false (it refers to cognitive organization, not interpersonal judgment); Statement 2 is false (no personality type is superior)."
+      },
+      {
+        id: 9,
+        domain: "CT",
+        question: "Having selected a new team member, to join a network of existing change agents, how should they be brought up to speed on the change programme?",
+        options: [
+          "Incentive scheme",
+          "HR handbook",
+          "Induction programme",
+          "External coach"
+        ],
+        correct: 2,
+        userResponse: 2,
+        takeaway: "A structured induction programme ensures new change agents quickly understand project objectives, their role boundaries, governance structures, and key messages.",
+        distractor: "Incentives (A) provide motivation, not onboarding; An HR handbook (B) covers standard corporate employment rules; External coaching (D) is cost-inefficient for role orientation."
+      },
+      {
+        id: 10,
+        domain: "WM",
+        question: "The overall change communication aims and approach may consist of a combination of 'Tell, Sell, Include, and Co-design', depending on the nature and scale of the change, and the required levels of adoption.\n\nWhere should the required level of adoption be set out?",
+        options: [
+          "Change strategy",
+          "Engagement strategy",
+          "Communication strategy",
+          "Delivery strategy"
+        ],
+        correct: 0,
+        userResponse: 0,
+        takeaway: "The overall Change Strategy defines the macro transition framework, including target adoption levels (e.g., Kelman's internalization) required for sustainable change.",
+        distractor: "The Engagement and Communication strategies define downstream tactics to achieve the adoption levels mandated by the Change Strategy."
+      },
+      {
+        id: 11,
+        domain: "PC",
+        question: "According to some neuroscientists, what is needed for personal 'moments of insight' to create new natural behaviours?",
+        options: [
+          "Inspiration from the boss",
+          "Better financial Incentives",
+          "Sustained focus over time",
+          "Study of neuroscience"
+        ],
+        correct: 2,
+        userResponse: 2,
+        takeaway: "Neuroplasticity requires sustained mental focus and repeated reflection over time to strengthen new neural pathways and hardwire insights into habitual behaviors.",
+        distractor: "Managerial inspiration (A) and financial incentives (B) provide temporary external motivation but cannot rewire neurobiology without sustained personal attention."
+      },
+      {
+        id: 12,
+        domain: "OA",
+        question: "Which of the following statements about planned and emergent changes are true?\n\n1. They can occur simultaneously\n2. They are independent of one another",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 or 2 is true"
+        ],
+        correct: 0,
+        userResponse: 0,
+        takeaway: "Planned change (top-down, structured milestones) and emergent change (bottom-up cultural and operational adaptation) often occur simultaneously within complex organizations, but they constantly interact and influence one another (they are NOT independent).",
+        distractor: "Statement 2 is false because emergent local adaptations directly reshape and interface with planned programmatic milestones."
+      },
+      {
+        id: 13,
+        domain: "OA",
+        question: "Which of the following perspectives are required to see an organizational culture for what it really is (Edgar Schein, 2019)?\n\n1. The internal perspective of a new starter in this organization.\n2. The external perspective from people who can compare this to other organizations",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 or 2 is true"
+        ],
+        correct: 1,
+        userResponse: 2,
+        takeaway: "Schein emphasized that true cultural comparison requires an external perspective from outsiders or experienced observers who can contrast tacit, taken-for-granted assumptions against alternative organizational cultures.",
+        distractor: "Statement 1 is insufficient because a new starter quickly becomes enculturated and lacks the comparative context needed to objectively diagnose deep underlying assumptions."
+      },
+      {
+        id: 14,
+        domain: "CT",
+        question: "Which correctly describes how Tuckman's five stages of team development work in practice?",
+        options: [
+          "Once a stage is completed a team never returns to it",
+          "Successful teams always stay in the 'performing' stage",
+          "Teams may go backwards or oscillate between the stages",
+          "An equal amount of time is spent in each stage"
+        ],
+        correct: 2,
+        userResponse: 2,
+        takeaway: "In real-world practice, team development is dynamic; changes in team membership, leadership, or external project scope cause teams to oscillate back into storming or norming.",
+        distractor: "Option A is false (regression is common); Option B is false (disruption causes reversion); Option D is false (time spent in each stage varies widely)."
+      },
+      {
+        id: 15,
+        domain: "PC",
+        question: "Which action is an appropriate change management response to people in the early stages of a ‘change curve’?",
+        options: [
+          "Interpret high emotions as evidence of poor change management",
+          "Be clear about the losses that people will experience",
+          "Delay communication until all the details are known",
+          "Accept that everyone will eventually work their way through the curve"
+        ],
+        correct: 1,
+        userResponse: 3,
+        takeaway: "In the early stages of the change curve (Shock/Denial/Endings - Bridges), leaders must openly acknowledge and be clear about what is ending and what losses people will experience before new beginnings can take hold.",
+        distractor: "Option D is passive and false (many get trapped in depression/cynicism without intervention); Option C causes rumor mills; Option A ignores natural grief dynamics."
+      },
+      {
+        id: 16,
+        domain: "SC",
+        question: "Which of the following statements, about 'Noise' in the basic model of communication, are true?\n\n1. Can involve thoughts, knowledge and experience\n2. Makes it harder for the receiver to interpret the message",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 or 2 is true"
+        ],
+        correct: 2,
+        userResponse: 2,
+        takeaway: "In communication theory (Shannon-Weaver), 'Noise' includes internal psychological filters (preconceptions, prior knowledge, cognitive biases) as well as physical noise, both of which distort message interpretation.",
+        distractor: "Both statements are true: cognitive baggage acts as psychological noise that degrades transmission fidelity."
+      },
+      {
+        id: 17,
+        domain: "CT",
+        question: "Which statement BEST describes the role of a change sponsor in an organization?",
+        options: [
+          "A person appointed by line management to report to them on change matters",
+          "A person who acts independently of line management to help achieve change",
+          "An active and visible leader who creates a vision for change, and lends it credibility",
+          "Someone who must adopt the changes at the local level and deliver the benefit"
+        ],
+        correct: 2,
+        userResponse: 2,
+        takeaway: "An effective change sponsor is a senior, visible leader who establishes the strategic rationale, aligns leadership coalitions, lends authority and credibility, and champions the initiative.",
+        distractor: "Option A describes a project coordinator; Option B describes an external consultant or agent; Option D describes frontline operational line managers."
+      },
+      {
+        id: 18,
+        domain: "OA",
+        question: "In Kotter's Process for Leading Change, which of the following statements about creating a sense of urgency are true?\n\n1. It is intended to motivate the volunteer army\n2. Leaders do not need to be involved in this step",
+        options: [
+          "Only 1 is true",
+          "Only 2 is true",
+          "Both 1 and 2 are true",
+          "Neither 1 or 2 is true"
+        ],
+        correct: 0,
+        userResponse: 0,
+        takeaway: "Creating urgency (Kotter Step 1) establishes the imperative that motivates the 'volunteer army' to mobilize. Senior leadership involvement is paramount to demonstrate authenticity and focus.",
+        distractor: "Statement 2 is entirely false because executive leaders must spearhead and role-model the urgency."
+      },
+      {
+        id: 19,
+        domain: "PC",
+        question: "According to the brain science of resistance, which of the key neural factors involves the creation of mental maps?",
+        options: [
+          "Routine Seeking",
+          "Emotional reaction to forced change",
+          "Cognitive rigidity",
+          "Short term focus"
+        ],
+        correct: 0,
+        userResponse: 0,
+        takeaway: "The basal ganglia automates familiar tasks by forming neural 'mental maps' through Routine Seeking. Disruption of these maps forces the prefrontal cortex to consume immense energy, triggering discomfort.",
+        distractor: "Cognitive rigidity is behavioral obstinacy; Emotional reaction is amygdala-driven fear; Short-term focus relates to discounting future rewards."
+      },
+      {
+        id: 20,
+        domain: "WM",
+        question: "The first step, when assessing the impact of change, is to categorize and identify change impacts from the viewpoint of the organization and stakeholders.\n\nWhich of these categories should include areas that are out of scope or not impacted by the change?",
+        options: [
+          "Intended Change",
+          "Unintended Change",
+          "Unplanned Change",
+          "Change Management activities"
+        ],
+        correct: 0,
+        userResponse: 1,
+        takeaway: "During impact assessment scoping, 'Intended Change' explicitly delineates what IS and what IS NOT within the intended boundary of the initiative (setting deliberate boundaries).",
+        distractor: "Unintended/Unplanned changes (B, C) represent emergent, unforeseen side-effects rather than predetermined out-of-scope declarations."
+      },
+      {
+        id: 21,
+        domain: "SC",
+        question: "What stakeholder analysis tool is based on careful observations and analysis as to how a stakeholder behaves and responds to certain activities, suggestions, conversations?",
+        options: [
+          "Power and interest grid",
+          "Empathy map",
+          "7-S model",
+          "KSA chart"
+        ],
+        correct: 1,
+        userResponse: 0,
+        takeaway: "An Empathy Map captures behavioral observations by documenting what a stakeholder says, does, hears, and feels during interactions.",
+        distractor: "The Power and Interest Grid (A) categorizes stakeholders into quadrants; McKinsey's 7-S (C) analyzes organizational architecture; KSA (D) tracks Knowledge, Skills, and Abilities."
+      },
+      {
+        id: 22,
+        domain: "WM",
+        question: "A retail outlet is about to launch their new online shopping portal. The portal will go live offering just a few of the retailer's products. New products will added every 2 weeks.\n\nWhat type of delivery strategy is being demonstrated?",
+        options: [
+          "Big Bang",
+          "Phased",
+          "Voluntary Adoption",
+          "Many small incremental / iterative releases"
+        ],
+        correct: 3,
+        userResponse: 3,
+        takeaway: "Releasing a baseline core offering followed by continuous regular enhancements every two weeks is a textbook Agile incremental and iterative release strategy.",
+        distractor: "Big Bang (A) launches all products at once; Phased (B) typically deploys entire regional or functional blocks rather than rapid 2-week iterations."
+      },
+      {
+        id: 23,
+        domain: "CT",
+        question: "What type of power is demonstrated through encouraging a more participative approach and getting people engaged in change?",
+        options: [
+          "Positive",
+          "Persuasive",
+          "Positional",
+          "Personal"
+        ],
+        correct: 3,
+        userResponse: 3,
+        takeaway: "Personal power stems from interpersonal rapport, relational credibility, empathy, and collaborative facilitation rather than rank or hierarchy.",
+        distractor: "Positional power (C) relies on hierarchical authority or coercion; Persuasive and Positive (A, B) are stylistic descriptions rather than French and Raven's foundational power bases."
+      },
+      {
+        id: 24,
+        domain: "PC",
+        question: "Which action describes ‘change’ in Bridges’ model of human transitions?",
+        options: [
+          "Adjusting attitudes to change",
+          "Learning new ways of working",
+          "Abandoning old thought patterns",
+          "Implementing the change"
+        ],
+        correct: 3,
+        userResponse: 3,
+        takeaway: "William Bridges makes a sharp distinction: 'Change' is the external, situational event (implementing the change), whereas 'Transition' is the internal psychological process people undergo to adapt.",
+        distractor: "Options A, B, and C describe internal psychological transition (Endings, Neutral Zone, New Beginnings)."
+      },
+      {
+        id: 25,
+        domain: "PC",
+        question: "What is the relevance of positive psychology in times of change?",
+        options: [
+          "Helps to understand, cure or relieve mental distress",
+          "Focus on how people can remain strong and grow",
+          "Ability to make people think what you want",
+          "Moral and ethical incentive to do the right thing"
+        ],
+        correct: 1,
+        userResponse: 1,
+        takeaway: "Positive psychology (Seligman) shifts focus from pathology to human strengths, resilience, optimism, and thriving during turbulent organizational change.",
+        distractor: "Option A describes clinical pathology/therapy; Option C describes manipulation; Option D relates to ethical governance."
+      },
+      {
+        id: 26,
+        domain: "WM",
+        question: "Which of the common Agile concepts, behaviours and techniques gives the customer frequent opportunities to provide feedback?",
+        options: [
+          "Accepting that not everything will be delivered.",
+          "Incremental delivery",
+          "Self-organised teams",
+          "Empowerment"
+        ],
+        correct: 1,
+        userResponse: 1,
+        takeaway: "Delivering working solutions in small, regular increments provides continuous opportunities for stakeholders to inspect progress and steer future iterations.",
+        distractor: "Self-organized teams (C) and empowerment (D) relate to team autonomy, not the release feedback cadence itself."
+      },
+      {
+        id: 27,
+        domain: "CT",
+        question: "Which of the following functions should a Change Agent avoid?",
+        options: [
+          "Sharing lessons from other line leaders engaged in change",
+          "Discussing future resource requirements and availability",
+          "Sharing information with both the sponsor(s) and line leaders",
+          "Taking over the line leader's role"
+        ],
+        correct: 3,
+        userResponse: 3,
+        takeaway: "Change agents must advise and support; they must NEVER usurp the line leader's direct authority or operational accountability.",
+        distractor: "Options A, B, and C are healthy facilitation functions of an effective change agent network."
+      },
+      {
+        id: 28,
+        domain: "SC",
+        question: "Who would be most effective in communicating to employees how change is going to impact them personally?",
+        options: [
+          "Sponsor because they are the most senior change role",
+          "Other front-line staff because they share same concerns",
+          "Line Leaders because they can put information into local context",
+          "Implementers because they are making the change happen"
+        ],
+        correct: 2,
+        userResponse: 2,
+        takeaway: "Direct Line Leaders are trusted sources who understand local workflows and can translate corporate strategy into personal 'What's In It For Me' (WIIFM) impact.",
+        distractor: "Sponsors (A) are preferred for broad organizational vision; Implementers (D) focus on technical delivery."
+      },
+      {
+        id: 29,
+        domain: "WM",
+        question: "Which of the following Agile change practices gives every member of the team a daily opportunity to communicate any obstructions associated with their workload?",
+        options: [
+          "Change Backlog",
+          "Stand-Ups",
+          "Retrospectives",
+          "Sprints"
+        ],
+        correct: 1,
+        userResponse: 1,
+        takeaway: "The Daily Stand-Up (15-minute timebox) explicitly focuses on three questions: what was done, what will be done, and what roadblocks or obstructions are in the way.",
+        distractor: "Backlog (A) is the prioritized list of tasks; Retrospectives (C) occur at the end of a sprint; Sprints (D) are delivery cycles."
+      },
+      {
+        id: 30,
         domain: "WM",
         question: "During the Prioritization stage of the change management cycle, which agile change practice would be MOST useful?",
         options: [
@@ -631,13 +1084,14 @@
           "Retrospectives"
         ],
         correct: 2,
+        userResponse: 2,
         takeaway: "Minimum Viable Change (MVC) focuses on identifying the smallest, most impactful change increment to deliver value without exceeding organizational capacity.",
-        distractor: "Kanban is for WIP flow delivery; Stand-ups are daily blocker syncs; Retrospectives are post-cycle reflection reviews."
+        distractor: "Kanban manages WIP; Stand-ups are daily syncs; Retrospectives are post-cycle reflection reviews."
       },
       {
-        id: 2,
+        id: 31,
         domain: "SC",
-        question: "Which of the following statements about psychological safety are true?\n1. It is an environment that cannot be created in a virtual meeting.\n2. It is an environment in which it is wiser not to speak out.",
+        question: "Which of the following statements about psychological safety are true?\n\n1. It is an environment that cannot be created in a virtual meeting.\n2. It is an environment in which it is wiser not to speak out.",
         options: [
           "Only 1 is true",
           "Only 2 is true",
@@ -645,11 +1099,12 @@
           "Neither 1 or 2 is true"
         ],
         correct: 3,
+        userResponse: 3,
         takeaway: "Psychological safety (Edmondson) encourages speaking up without fear and CAN be fostered virtually through intentional norms.",
         distractor: "Statement 1 is false (virtual teams can foster safety). Statement 2 is false (safety encourages speaking up, not staying quiet)."
       },
       {
-        id: 3,
+        id: 32,
         domain: "SC",
         question: "What key principle, for building and maintaining engagement throughout change, is demonstrated by being curious about peoples lives and showing an interest in how they are feeling?",
         options: [
@@ -659,11 +1114,12 @@
           "Empathy"
         ],
         correct: 3,
+        userResponse: 3,
         takeaway: "Empathy involves genuinely seeking to understand stakeholders' feelings, personal perspective, and transition experiences.",
         distractor: "Inclusivity is about broad representation; Connectivity is about communication channels; Transparency is open information sharing."
       },
       {
-        id: 4,
+        id: 33,
         domain: "PC",
         question: "What is the objective of the 'change formula' (Beckhard and Harris)?",
         options: [
@@ -673,11 +1129,12 @@
           "Identify skills and training requirements"
         ],
         correct: 1,
+        userResponse: 1,
         takeaway: "D x V x F > R is a diagnostic tool to pinpoint whether Dissatisfaction, Vision, or First Steps need reinforcement to overcome resistance.",
         distractor: "Cost-benefit is financial; detailed plans belong to project plans; skills training is handled by ADKAR or capability frameworks."
       },
       {
-        id: 5,
+        id: 34,
         domain: "SC",
         question: "What needs to be established before you can plan how and when to engage with stakeholders?",
         options: [
@@ -687,11 +1144,12 @@
           "Engagement strategy"
         ],
         correct: 0,
+        userResponse: 0,
         takeaway: "Defining desired outcomes dictates the appropriate engagement level, channels, and schedules.",
         distractor: "Meeting schedules and channels are downstream tactical details; the engagement strategy itself is shaped by desired outcomes."
       },
       {
-        id: 6,
+        id: 35,
         domain: "SC",
         question: "Carolyn Taylor describes three mechanisms through which cultural messages are communicated. Which mechanism includes a significant change in the way leaders structure their time?",
         options: [
@@ -701,13 +1159,14 @@
           "Systems"
         ],
         correct: 1,
+        userResponse: 1,
         takeaway: "Leader time allocation, budget distribution, and office layout are major symbolic signals of organizational priorities.",
         distractor: "Behaviours are day-to-day actions; Systems are policies/IT tools; Skills is not one of Taylor's three mechanisms."
       },
       {
-        id: 7,
+        id: 36,
         domain: "OA",
-        question: "The severity of change impact at an organizational level will depend on several factors. Which of these factors is reflected in people's perception of previous change successes and failures?",
+        question: "The severity of change impact at an organizational level will depend on several factors.\n\nWhich of these factors is reflected in people's perception of previous change successes and failures?",
         options: [
           "The history of change in the organization",
           "The environment",
@@ -715,13 +1174,14 @@
           "The nature of change"
         ],
         correct: 0,
+        userResponse: 0,
         takeaway: "A poor change history generates cynicism and fatigue, while positive past changes build trust and resilience.",
         distractor: "The environment is external PESTLE factors; Change ability is maturity/resource capability; Nature of change describes scope/type."
       },
       {
-        id: 8,
+        id: 37,
         domain: "PC",
-        question: "Which of the following statements about learning and survival anxieties (Schein) are true?\n1. There must be a level of ‘survival anxiety’ for change to happen at an acceptable pace.\n2. ‘Learning anxiety’ should be kept as low as possible.",
+        question: "Which of the following statements about learning and survival anxieties (Schein) are true?\n\n1. There must be a level of ‘survival anxiety’ for change to happen at an acceptable pace.\n2. ‘Learning anxiety’ should be kept as low as possible.",
         options: [
           "Only 1 is true",
           "Only 2 is true",
@@ -729,11 +1189,12 @@
           "Neither 1 or 2 is true"
         ],
         correct: 2,
+        userResponse: 2,
         takeaway: "For change to happen, Survival Anxiety must exceed Learning Anxiety. Lowering learning anxiety reduces resistance.",
         distractor: "Both are true: survival anxiety supplies urgency to move, while learning anxiety must be reduced via psychological safety."
       },
       {
-        id: 9,
+        id: 38,
         domain: "PC",
         question: "When dealing with resistance (Kanter), which would be MOST effective when dealing with an individuals perceived loss of control over territory?",
         options: [
@@ -743,11 +1204,12 @@
           "Empathy"
         ],
         correct: 2,
+        userResponse: 2,
         takeaway: "Loss of control or territory is directly addressed by involving people and giving them choices (Empowerment).",
         distractor: "Information resolves uncertainty; Incentive resolves lack of motivation; Empathy validates emotions but doesn't restore control."
       },
       {
-        id: 10,
+        id: 39,
         domain: "SC",
         question: "Which typical barrier to communication is reduced through the empowerment of teams?",
         options: [
@@ -757,11 +1219,12 @@
           "Amount of information"
         ],
         correct: 0,
+        userResponse: 0,
         takeaway: "Empowering autonomous teams flattens multi-tiered managerial layers and eliminates hierarchical communication bottlenecks.",
         distractor: "Culture is shared values, not a structural pathway; Technology and Amount of Information are medium/volume barriers."
       },
       {
-        id: 11,
+        id: 40,
         domain: "WM",
         question: "Which factor should be considered when defining a change delivery scorecard?",
         options: [
@@ -771,11 +1234,12 @@
           "Reach"
         ],
         correct: 0,
+        userResponse: 0,
         takeaway: "Relevance ensures every metric directly tracks what matters toward business and adoption outcomes.",
         distractor: "Risk belongs to the Risk Register; Reward relates to incentives; Reach is a specific communication metric rather than a scorecard criterion."
       },
       {
-        id: 12,
+        id: 41,
         domain: "SC",
         question: "When communicating change, what is necessary to help people understand which elements of the change they can contribute to?",
         options: [
@@ -785,13 +1249,14 @@
           "Clear boundaries"
         ],
         correct: 3,
+        userResponse: 3,
         takeaway: "Clear boundaries outline what is negotiable vs non-negotiable, directing stakeholder input where it truly counts.",
         distractor: "Hierarchy often impedes input; Technology is a transmission tool; Psychological safety makes it safe to speak but doesn't define scope."
       },
       {
-        id: 13,
+        id: 42,
         domain: "WM",
-        question: "Which of the following statements, about different type of metrics, are true?\n1. Quantitative data can help to understand how, why, or what happened behind certain behaviours.\n2. Qualitative data is number-based, countable, or measurable.",
+        question: "Which of the following statements, about different type of metrics, are true?\n\n1. Quantitative data can help to understand, how, why, or what happened behind certain behaviours\n2. Qualitative data is number-based, countable, or measurable",
         options: [
           "Only 1 is true",
           "Only 2 is true",
@@ -799,11 +1264,12 @@
           "Neither 1 or 2 is true"
         ],
         correct: 3,
+        userResponse: 3,
         takeaway: "Both statements are reversed! Qualitative explains why/how; Quantitative is numerical and countable.",
         distractor: "Statement 1 describes qualitative insights; Statement 2 describes quantitative metrics."
       },
       {
-        id: 14,
+        id: 43,
         domain: "WM",
         question: "Which of the following is a key purpose of a Change Strategy?",
         options: [
@@ -813,11 +1279,12 @@
           "Justify the change"
         ],
         correct: 2,
+        userResponse: 2,
         takeaway: "A Change Strategy explains how the human side of change will be approached, governed, and supported.",
         distractor: "Justifying the change is the Business Case; Reporting progress is the Status Report; Recommending suppliers is Procurement."
       },
       {
-        id: 15,
+        id: 44,
         domain: "SC",
         question: "What effective communication and engagement approach is demonstrated by sharing past experience?",
         options: [
@@ -827,13 +1294,14 @@
           "Animation and graphics"
         ],
         correct: 2,
+        userResponse: 2,
         takeaway: "Sharing personal experiences through narrative and storytelling creates authentic, emotionally resonant engagement.",
         distractor: "Symbolic actions are non-verbal signals; Metaphors compare concepts abstractly; Graphics are visual formats."
       },
       {
-        id: 16,
+        id: 45,
         domain: "CT",
-        question: "The five positive characteristics that should be developed when building an effective change team (Lencioni) build on one another. Which of these characteristics follows on from all others?",
+        question: "The five positive characteristics that should be developed when building an effective change team (Lencioni) build on one another.\n\nWhich of these characteristics follows on from all others?",
         options: [
           "Focus on team results",
           "Mutual accountability",
@@ -841,11 +1309,12 @@
           "Constructive conflict about ideas"
         ],
         correct: 0,
+        userResponse: 0,
         takeaway: "Focus on team results sits at the top apex of Lencioni's pyramid and depends on all preceding levels.",
         distractor: "Conflict builds on Trust; Commitment builds on Conflict; Accountability builds on Commitment."
       },
       {
-        id: 17,
+        id: 46,
         domain: "PC",
         question: "Which example demonstrates a ‘learning dip’ for an individual who is using a new system, according to the conscious competence learning model?",
         options: [
@@ -855,11 +1324,12 @@
           "Being able to perform all existing work but unaware of new functions"
         ],
         correct: 1,
+        userResponse: 1,
         takeaway: "The 'Learning Dip' occurs in Stage 2 (Conscious Incompetence), where sudden awareness of gaps creates friction and confusion.",
         distractor: "Option A is moving into competence; Option C is unconscious competence; Option D is unconscious incompetence."
       },
       {
-        id: 18,
+        id: 47,
         domain: "SC",
         question: "Of the ways in which we communicate and connect with people, which is MOST effective for contextualising important messages for diverse audiences?",
         options: [
@@ -868,12 +1338,13 @@
           "Visual",
           "Verbal"
         ],
-        correct: 3,
-        takeaway: "Two-way verbal communication allows communicators to adapt phrasing and tailor meaning dynamically to diverse groups.",
-        distractor: "Non-verbal reinforces tone; Listening gathers feedback; Visuals aid memory but cannot dynamically adapt on the fly."
+        correct: 2,
+        userResponse: 3,
+        takeaway: "According to the official APMG syllabus key, Visual communication (diagrams, roadmaps, process models) is tested as the most effective standardized anchor for contextualizing complex multi-group messages across diverse stakeholder audiences.",
+        distractor: "Verbal (D) is highly adaptable in dialogue, but the standardized exam rubric pairs broad structural contextualization across diverse teams with Visual artifacts."
       },
       {
-        id: 19,
+        id: 48,
         domain: "PC",
         question: "According to Honey and Mumford's learning styles, which learning approach will BEST support change for an individual with a ‘theorist’ learning preference?",
         options: [
@@ -883,13 +1354,14 @@
           "Attempting the change and reviewing progress with their manager"
         ],
         correct: 2,
+        userResponse: 2,
         takeaway: "Theorists learn through concepts, models, and logical structures, making formal seminars the ideal fit.",
         distractor: "Coaching appeals to Pragmatists; Observation appeals to Reflectors; Hands-on attempts appeal to Activists."
       },
       {
-        id: 20,
+        id: 49,
         domain: "CT",
-        question: "Which of the following statements about diverse teams are true?\n1. Provide narrower perspective.\n2. Decisions take longer.",
+        question: "Which of the following statements about diverse teams are true?\n\n1. Provide narrower perspective.\n2. Decisions take longer.",
         options: [
           "Only 1 is true",
           "Only 2 is true",
@@ -897,11 +1369,12 @@
           "Neither 1 or 2 is true"
         ],
         correct: 1,
+        userResponse: 1,
         takeaway: "Diverse teams broaden perspectives (Statement 1 is false), but harmonizing differing views requires more discussion time (Statement 2 is true).",
         distractor: "Statement 1 is false because diverse backgrounds prevent narrow groupthink."
       },
       {
-        id: 21,
+        id: 50,
         domain: "SC",
         question: "Which communication channel characteristic is associated with a poster advertising campaign?",
         options: [
@@ -911,69 +1384,15 @@
           "Engaging"
         ],
         correct: 0,
+        userResponse: 0,
         takeaway: "Posters broadcast information in a single direction without immediate channels for feedback (One way).",
         distractor: "Posters are lean (low richness), asynchronous (not real-time), and engaging is an outcome rather than a structural trait."
-      },
-      {
-        id: 22,
-        domain: "OA",
-        question: "Which of the following roles is ULTIMATELY accountable for the realization of business benefits?",
-        options: [
-          "Change Manager",
-          "Business Leadership",
-          "Project Manager",
-          "Change Agent"
-        ],
-        correct: 1,
-        takeaway: "Business leadership owns benefits realization; Change Managers facilitate and enable adoption but do not own business results.",
-        distractor: "Change managers design adoption plans; Project managers deliver technical outputs; Change agents facilitate local feedback."
-      },
-      {
-        id: 23,
-        domain: "OA",
-        question: "In the Cynefin framework, what is the appropriate leadership response in a 'Complex' environment?",
-        options: [
-          "Sense - Categorize - Respond",
-          "Sense - Analyze - Respond",
-          "Probe - Sense - Respond",
-          "Act - Sense - Respond"
-        ],
-        correct: 2,
-        takeaway: "Complex environments have unpredictable cause-and-effect; leaders must Probe (experiment), Sense (gather feedback), and Respond.",
-        distractor: "Sense-Categorize is Simple; Sense-Analyze is Complicated; Act-Sense is Chaotic."
-      },
-      {
-        id: 24,
-        domain: "SC",
-        question: "Who is the preferred sender for communicating personal impact ('What is in it for me?') to frontline employees?",
-        options: [
-          "Executive Sponsor",
-          "Change Manager",
-          "Direct Line Leader / Supervisor",
-          "External Consultant"
-        ],
-        correct: 2,
-        takeaway: "Direct supervisors/line leaders are best positioned to translate high-level strategies into day-to-day personal impacts.",
-        distractor: "Sponsors are best for organizational vision; Change managers provide frameworks; External consultants lack personal authority."
-      },
-      {
-        id: 25,
-        domain: "CT",
-        question: "Which function should a Change Agent avoid?",
-        options: [
-          "Sharing lessons from other line leaders",
-          "Discussing future resource requirements",
-          "Sharing information with sponsors and line leaders",
-          "Taking over the line leader's role"
-        ],
-        correct: 3,
-        takeaway: "Change agents facilitate and advise; they must never usurp the line leader's operational authority or responsibility.",
-        distractor: "Options A, B, and C are all key facilitation responsibilities of an effective change agent."
       }
     ];
 
     let currentFilter = "ALL";
     let answersState = {};
+    let showingOnlyMistakes = false;
 
     function renderQuestions() {
       const container = document.getElementById("questions-container");
@@ -984,17 +1403,20 @@
         const matchesDomain = (currentFilter === "ALL" || q.domain === currentFilter);
         const matchesSearch = q.question.toLowerCase().includes(searchVal) || 
                               q.takeaway.toLowerCase().includes(searchVal);
-        return matchesDomain && matchesSearch;
+        const isMistake = q.userResponse !== q.correct;
+        const matchesMistakes = !showingOnlyMistakes || isMistake;
+        return matchesDomain && matchesSearch && matchesMistakes;
       });
 
       if (filtered.length === 0) {
-        container.innerHTML = `<div class="text-center py-8 text-xs text-slate-400">No matching questions found.</div>`;
+        container.innerHTML = `<div class="text-center py-8 text-xs text-slate-400">No matching questions found in this view.</div>`;
         return;
       }
 
       filtered.forEach(q => {
         const isAnswered = answersState[q.id] !== undefined;
-        const selectedOpt = answersState[q.id];
+        const selectedOpt = isAnswered ? answersState[q.id] : q.userResponse;
+        const wasUserMistakeInExam = q.userResponse !== q.correct;
 
         const card = document.createElement("div");
         card.className = "bg-white p-4 rounded-2xl border border-slate-200 shadow-xs space-y-3";
@@ -1003,7 +1425,13 @@
           let btnClass = "w-full text-left p-3 rounded-xl border text-xs transition-all ";
           
           if (!isAnswered) {
-            btnClass += "border-slate-200 bg-slate-50/50 hover:bg-sky-50 hover:border-sky-200 active:scale-[0.99]";
+            if (idx === q.correct) {
+              btnClass += "border-emerald-300 bg-emerald-50/70 text-emerald-900 font-semibold ring-1 ring-emerald-400";
+            } else if (idx === q.userResponse && wasUserMistakeInExam) {
+              btnClass += "border-rose-300 bg-rose-50 text-rose-800 line-through";
+            } else {
+              btnClass += "border-slate-100 bg-slate-50/50 text-slate-600";
+            }
           } else {
             if (idx === q.correct) {
               btnClass += "border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold ring-1 ring-emerald-400";
@@ -1014,31 +1442,32 @@
             }
           }
 
-          return `<button onclick="selectOption(${q.id}, ${idx})" class="${btnClass}" ${isAnswered ? 'disabled' : ''}>
+          return `<button onclick="selectOption(${q.id}, ${idx})" class="${btnClass}">
             <span class="inline-block w-5 font-bold">${String.fromCharCode(65 + idx)}.</span> ${opt}
           </button>`;
         }).join("");
 
-        let explanationHtml = "";
-        if (isAnswered) {
-          explanationHtml = `
-            <div class="mt-3 pt-3 border-t border-slate-100 space-y-2 text-xs">
-              <div class="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100 text-emerald-900">
-                <span class="font-bold">Key Takeaway:</span> ${q.takeaway}
-              </div>
-              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-slate-600">
-                <span class="font-bold">Distractor Rationale:</span> ${q.distractor}
-              </div>
+        let explanationHtml = `
+          <div class="mt-3 pt-3 border-t border-slate-100 space-y-2 text-xs">
+            <div class="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100 text-emerald-900">
+              <span class="font-bold">Key Takeaway:</span> ${q.takeaway}
             </div>
-          `;
-        }
+            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-slate-600">
+              <span class="font-bold">Distractor Rationale:</span> ${q.distractor}
+            </div>
+          </div>
+        `;
 
         card.innerHTML = `
           <div class="flex items-center justify-between">
             <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-600">
               Q${q.id} • ${q.domain}
             </span>
-            ${isAnswered ? (selectedOpt === q.correct ? '<span class="text-emerald-600 text-xs font-bold">✓ Correct</span>' : '<span class="text-rose-500 text-xs font-bold">✗ Incorrect</span>') : ''}
+            <div class="flex items-center gap-1.5">
+              ${wasUserMistakeInExam ? 
+                '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700">Exam Miss (Q' + q.id + ')</span>' : 
+                '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">✓ Exam Correct</span>'}
+            </div>
           </div>
           <p class="text-xs font-semibold text-slate-800 leading-snug whitespace-pre-line">${q.question}</p>
           <div class="space-y-2 pt-1">
@@ -1053,26 +1482,29 @@
       updateScoreBadge();
     }
 
+    function toggleExamFilter(mode) {
+      showingOnlyMistakes = !showingOnlyMistakes;
+      const btn = document.getElementById("mistake-filter-btn");
+      if (showingOnlyMistakes) {
+        btn.textContent = "Show All 50 Questions";
+        btn.className = "text-[11px] font-semibold bg-amber-500 text-slate-900 px-2.5 py-1.5 rounded-xl transition-all";
+      } else {
+        btn.textContent = "Review 6 Missed ⚠️";
+        btn.className = "text-[11px] font-semibold bg-emerald-800/80 hover:bg-emerald-900 border border-emerald-400/40 px-2.5 py-1.5 rounded-xl transition-all";
+      }
+      renderQuestions();
+    }
+
     function selectOption(qId, optionIdx) {
-      if (answersState[qId] !== undefined) return;
       answersState[qId] = optionIdx;
       renderQuestions();
     }
 
     function updateScoreBadge() {
       const badge = document.getElementById("score-badge");
-      const totalAnswered = Object.keys(answersState).length;
-      if (totalAnswered === 0) {
-        badge.classList.add("hidden");
-        return;
-      }
       badge.classList.remove("hidden");
-      let correctCount = 0;
-      Object.keys(answersState).forEach(qId => {
-        const q = examQuestions.find(item => item.id == qId);
-        if (q && answersState[qId] === q.correct) correctCount++;
-      });
-      badge.textContent = `${correctCount}/${totalAnswered} Score`;
+      const userTotal = 44;
+      badge.textContent = `44/50 Exam Score`;
     }
 
     function switchTab(tabId) {
