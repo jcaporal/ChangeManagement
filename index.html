@@ -70,20 +70,23 @@
     <!-- Tab 1: Interactive Practice Questions -->
     <section id="view-questions" class="space-y-4">
       
-      <!-- Official Exam Score Banner -->
-      <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white p-3.5 rounded-2xl shadow-xs space-y-1.5">
+      <!-- Interactive Exam Simulator Banner -->
+      <div class="bg-gradient-to-r from-sky-700 via-indigo-700 to-sky-800 text-white p-4 rounded-2xl shadow-xs space-y-2">
         <div class="flex items-center justify-between">
-          <span class="text-[10px] font-bold tracking-wider uppercase bg-white/20 px-2 py-0.5 rounded-full">Official Exam Result</span>
-          <span class="text-xs font-bold bg-white text-emerald-800 px-2 py-0.5 rounded-full shadow-xs">PASSED (88%)</span>
+          <span class="text-[10px] font-bold tracking-wider uppercase bg-white/20 px-2 py-0.5 rounded-full">Foundation Exam Simulator</span>
+          <span id="pass-indicator" class="text-xs font-bold bg-white/20 text-white px-2 py-0.5 rounded-full">Pass: 25/50 (50%)</span>
         </div>
         <div class="flex items-baseline justify-between pt-1">
           <div>
-            <h3 class="text-base font-bold">Score: 44 / 50 Marks</h3>
-            <p class="text-[11px] text-emerald-100">Pass Mark: 25/50 • Exam Date: October 02, 2026</p>
+            <h3 class="text-base font-bold flex items-center gap-2">
+              <span>Score: <span id="current-score">0</span> / 50</span>
+              <span id="answered-counter" class="text-xs font-normal text-sky-200">(0 answered)</span>
+            </h3>
+            <p class="text-[11px] text-sky-100">50 Multiple-Choice Questions • Official APMG Syllabus Key</p>
           </div>
-          <button onclick="toggleExamFilter('MISTAKES')" id="mistake-filter-btn" 
-                  class="text-[11px] font-semibold bg-emerald-800/80 hover:bg-emerald-900 border border-emerald-400/40 px-2.5 py-1.5 rounded-xl transition-all">
-            Review 6 Missed ⚠️
+          <button onclick="resetSimulation()" id="reset-sim-btn" 
+                  class="text-[11px] font-semibold bg-white text-sky-800 hover:bg-sky-50 shadow-xs px-3 py-1.5 rounded-xl transition-all active:scale-95">
+            Reset Test 🔄
           </button>
         </div>
       </div>
@@ -637,6 +640,7 @@
   </main>
 
   <script>
+    // Official APMG Exam Question Set (1-50) with verified answer keys (A=0, B=1, C=2, D=3)
     const examQuestions = [
       {
         id: 1,
@@ -648,8 +652,7 @@
           "All of them",
           "None of them"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "In Prosci's ADKAR model (Awareness, Desire, Knowledge, Ability, Reinforcement), every milestone is sequential and required; none can be skipped without jeopardizing sustainable adoption.",
         distractor: "Skipping Awareness creates confusion; skipping Desire triggers active resistance; skipping Knowledge/Ability causes the learning dip to fail."
       },
@@ -663,8 +666,7 @@
           "Certainty",
           "Creativity"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "In David Rock's SCARF model (Status, Certainty, Autonomy, Relatedness, Fairness), 'C' stands for Certainty—the brain's fundamental craving for predictability.",
         distractor: "Credibility, Consciousness, and Creativity are cognitive concepts but not components of the SCARF neuroscience domain."
       },
@@ -678,8 +680,7 @@
           "Line Leaders",
           "Change-Agent"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "Change Agents act as network facilitators, influencers, and communication bridges, operating purely through personal power and influence without operational line authority.",
         distractor: "Sponsors have senior organizational authority; Line Leaders hold direct managerial authority; Implementers carry formal task assignments."
       },
@@ -693,8 +694,7 @@
           "High levels of job security will motivate people",
           "Motivation comes from detailed processes that describe every aspect of a job"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "Daniel Pink's Drive framework identifies Autonomy (self-direction and taking charge of one's own work), Mastery, and Purpose as the primary intrinsic drivers for complex knowledge work.",
         distractor: "Money (A) is a baseline hygiene factor; Job security (C) is a safety need (Maslow); Micro-processes (D) destroy autonomy."
       },
@@ -708,8 +708,7 @@
           "Proactive art of delegation",
           "A structured escalation process"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "Agile methodologies emphasize rapid feedback loops, empirical evidence, and data-informed decision-making rather than rigid predetermined assumptions.",
         distractor: "Creative thinking is a generic cognitive skill; Delegation is standard management; Structured escalation is traditional governance."
       },
@@ -723,8 +722,7 @@
           "An individual or legal entity that is registered by an organization as the legal owner",
           "A person or organization that pays for or contributes to the costs involved in change"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "A stakeholder is formally defined as any individual or group who has an interest in, is affected by, or can exert influence over the outcome of the change.",
         distractor: "Financial stakeholders (A, D) and legal owners (C) represent specific sub-types, but the core definition encompasses anyone impacted or with influence."
       },
@@ -738,8 +736,7 @@
           "It is a guide to assessing the interfaces between different change initiative.",
           "As a management resource to help schedule and generate statistical data analysis"
         ],
-        correct: 1,
-        userResponse: 0,
+        correct: 1, // B
         takeaway: "Kelman's adoption levels (Compliance, Identification, Internalization) provide qualitative criteria and benchmarks for measuring whether change has truly taken root or remains superficial.",
         distractor: "Option A is incorrect because Kelman is an adoption depth framework, not an organizational capability maturity model like CMMI."
       },
@@ -753,8 +750,7 @@
           "Both 1 and 2 are true",
           "Neither 1 nor 2 is true"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "In MBTI®, 'Judging' (J) simply refers to a lifestyle preference for structure, planning, and closure (not being judgmental), and all preferences are treated as equally valid and valuable.",
         distractor: "Statement 1 is false (it refers to cognitive organization, not interpersonal judgment); Statement 2 is false (no personality type is superior)."
       },
@@ -768,8 +764,7 @@
           "Induction programme",
           "External coach"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "A structured induction programme ensures new change agents quickly understand project objectives, their role boundaries, governance structures, and key messages.",
         distractor: "Incentives (A) provide motivation, not onboarding; An HR handbook (B) covers standard corporate employment rules; External coaching (D) is cost-inefficient for role orientation."
       },
@@ -783,8 +778,7 @@
           "Communication strategy",
           "Delivery strategy"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "The overall Change Strategy defines the macro transition framework, including target adoption levels (e.g., Kelman's internalization) required for sustainable change.",
         distractor: "The Engagement and Communication strategies define downstream tactics to achieve the adoption levels mandated by the Change Strategy."
       },
@@ -798,8 +792,7 @@
           "Sustained focus over time",
           "Study of neuroscience"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "Neuroplasticity requires sustained mental focus and repeated reflection over time to strengthen new neural pathways and hardwire insights into habitual behaviors.",
         distractor: "Managerial inspiration (A) and financial incentives (B) provide temporary external motivation but cannot rewire neurobiology without sustained personal attention."
       },
@@ -813,8 +806,7 @@
           "Both 1 and 2 are true",
           "Neither 1 or 2 is true"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "Planned change (top-down, structured milestones) and emergent change (bottom-up cultural and operational adaptation) often occur simultaneously within complex organizations, but they constantly interact and influence one another (they are NOT independent).",
         distractor: "Statement 2 is false because emergent local adaptations directly reshape and interface with planned programmatic milestones."
       },
@@ -828,8 +820,7 @@
           "Both 1 and 2 are true",
           "Neither 1 or 2 is true"
         ],
-        correct: 1,
-        userResponse: 2,
+        correct: 1, // B
         takeaway: "Schein emphasized that true cultural comparison requires an external perspective from outsiders or experienced observers who can contrast tacit, taken-for-granted assumptions against alternative organizational cultures.",
         distractor: "Statement 1 is insufficient because a new starter quickly becomes enculturated and lacks the comparative context needed to objectively diagnose deep underlying assumptions."
       },
@@ -843,8 +834,7 @@
           "Teams may go backwards or oscillate between the stages",
           "An equal amount of time is spent in each stage"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "In real-world practice, team development is dynamic; changes in team membership, leadership, or external project scope cause teams to oscillate back into storming or norming.",
         distractor: "Option A is false (regression is common); Option B is false (disruption causes reversion); Option D is false (time spent in each stage varies widely)."
       },
@@ -858,8 +848,7 @@
           "Delay communication until all the details are known",
           "Accept that everyone will eventually work their way through the curve"
         ],
-        correct: 1,
-        userResponse: 3,
+        correct: 1, // B
         takeaway: "In the early stages of the change curve (Shock/Denial/Endings - Bridges), leaders must openly acknowledge and be clear about what is ending and what losses people will experience before new beginnings can take hold.",
         distractor: "Option D is passive and false (many get trapped in depression/cynicism without intervention); Option C causes rumor mills; Option A ignores natural grief dynamics."
       },
@@ -873,8 +862,7 @@
           "Both 1 and 2 are true",
           "Neither 1 or 2 is true"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "In communication theory (Shannon-Weaver), 'Noise' includes internal psychological filters (preconceptions, prior knowledge, cognitive biases) as well as physical noise, both of which distort message interpretation.",
         distractor: "Both statements are true: cognitive baggage acts as psychological noise that degrades transmission fidelity."
       },
@@ -888,8 +876,7 @@
           "An active and visible leader who creates a vision for change, and lends it credibility",
           "Someone who must adopt the changes at the local level and deliver the benefit"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "An effective change sponsor is a senior, visible leader who establishes the strategic rationale, aligns leadership coalitions, lends authority and credibility, and champions the initiative.",
         distractor: "Option A describes a project coordinator; Option B describes an external consultant or agent; Option D describes frontline operational line managers."
       },
@@ -903,8 +890,7 @@
           "Both 1 and 2 are true",
           "Neither 1 or 2 is true"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "Creating urgency (Kotter Step 1) establishes the imperative that motivates the 'volunteer army' to mobilize. Senior leadership involvement is paramount to demonstrate authenticity and focus.",
         distractor: "Statement 2 is entirely false because executive leaders must spearhead and role-model the urgency."
       },
@@ -918,8 +904,7 @@
           "Cognitive rigidity",
           "Short term focus"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "The basal ganglia automates familiar tasks by forming neural 'mental maps' through Routine Seeking. Disruption of these maps forces the prefrontal cortex to consume immense energy, triggering discomfort.",
         distractor: "Cognitive rigidity is behavioral obstinacy; Emotional reaction is amygdala-driven fear; Short-term focus relates to discounting future rewards."
       },
@@ -933,8 +918,7 @@
           "Unplanned Change",
           "Change Management activities"
         ],
-        correct: 0,
-        userResponse: 1,
+        correct: 0, // A
         takeaway: "During impact assessment scoping, 'Intended Change' explicitly delineates what IS and what IS NOT within the intended boundary of the initiative (setting deliberate boundaries).",
         distractor: "Unintended/Unplanned changes (B, C) represent emergent, unforeseen side-effects rather than predetermined out-of-scope declarations."
       },
@@ -948,8 +932,7 @@
           "7-S model",
           "KSA chart"
         ],
-        correct: 1,
-        userResponse: 0,
+        correct: 1, // B
         takeaway: "An Empathy Map captures behavioral observations by documenting what a stakeholder says, does, hears, and feels during interactions.",
         distractor: "The Power and Interest Grid (A) categorizes stakeholders into quadrants; McKinsey's 7-S (C) analyzes organizational architecture; KSA (D) tracks Knowledge, Skills, and Abilities."
       },
@@ -963,8 +946,7 @@
           "Voluntary Adoption",
           "Many small incremental / iterative releases"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "Releasing a baseline core offering followed by continuous regular enhancements every two weeks is a textbook Agile incremental and iterative release strategy.",
         distractor: "Big Bang (A) launches all products at once; Phased (B) typically deploys entire regional or functional blocks rather than rapid 2-week iterations."
       },
@@ -978,8 +960,7 @@
           "Positional",
           "Personal"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "Personal power stems from interpersonal rapport, relational credibility, empathy, and collaborative facilitation rather than rank or hierarchy.",
         distractor: "Positional power (C) relies on hierarchical authority or coercion; Persuasive and Positive (A, B) are stylistic descriptions rather than French and Raven's foundational power bases."
       },
@@ -993,8 +974,7 @@
           "Abandoning old thought patterns",
           "Implementing the change"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "William Bridges makes a sharp distinction: 'Change' is the external, situational event (implementing the change), whereas 'Transition' is the internal psychological process people undergo to adapt.",
         distractor: "Options A, B, and C describe internal psychological transition (Endings, Neutral Zone, New Beginnings)."
       },
@@ -1008,8 +988,7 @@
           "Ability to make people think what you want",
           "Moral and ethical incentive to do the right thing"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "Positive psychology (Seligman) shifts focus from pathology to human strengths, resilience, optimism, and thriving during turbulent organizational change.",
         distractor: "Option A describes clinical pathology/therapy; Option C describes manipulation; Option D relates to ethical governance."
       },
@@ -1023,8 +1002,7 @@
           "Self-organised teams",
           "Empowerment"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "Delivering working solutions in small, regular increments provides continuous opportunities for stakeholders to inspect progress and steer future iterations.",
         distractor: "Self-organized teams (C) and empowerment (D) relate to team autonomy, not the release feedback cadence itself."
       },
@@ -1038,8 +1016,7 @@
           "Sharing information with both the sponsor(s) and line leaders",
           "Taking over the line leader's role"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "Change agents must advise and support; they must NEVER usurp the line leader's direct authority or operational accountability.",
         distractor: "Options A, B, and C are healthy facilitation functions of an effective change agent network."
       },
@@ -1053,8 +1030,7 @@
           "Line Leaders because they can put information into local context",
           "Implementers because they are making the change happen"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "Direct Line Leaders are trusted sources who understand local workflows and can translate corporate strategy into personal 'What's In It For Me' (WIIFM) impact.",
         distractor: "Sponsors (A) are preferred for broad organizational vision; Implementers (D) focus on technical delivery."
       },
@@ -1068,8 +1044,7 @@
           "Retrospectives",
           "Sprints"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "The Daily Stand-Up (15-minute timebox) explicitly focuses on three questions: what was done, what will be done, and what roadblocks or obstructions are in the way.",
         distractor: "Backlog (A) is the prioritized list of tasks; Retrospectives (C) occur at the end of a sprint; Sprints (D) are delivery cycles."
       },
@@ -1083,8 +1058,7 @@
           "Minimum Viable Change Practice",
           "Retrospectives"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "Minimum Viable Change (MVC) focuses on identifying the smallest, most impactful change increment to deliver value without exceeding organizational capacity.",
         distractor: "Kanban manages WIP; Stand-ups are daily syncs; Retrospectives are post-cycle reflection reviews."
       },
@@ -1098,8 +1072,7 @@
           "Both 1 and 2 are true",
           "Neither 1 or 2 is true"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "Psychological safety (Edmondson) encourages speaking up without fear and CAN be fostered virtually through intentional norms.",
         distractor: "Statement 1 is false (virtual teams can foster safety). Statement 2 is false (safety encourages speaking up, not staying quiet)."
       },
@@ -1113,8 +1086,7 @@
           "Transparency",
           "Empathy"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "Empathy involves genuinely seeking to understand stakeholders' feelings, personal perspective, and transition experiences.",
         distractor: "Inclusivity is about broad representation; Connectivity is about communication channels; Transparency is open information sharing."
       },
@@ -1128,8 +1100,7 @@
           "Help create detailed plans for a change initiative",
           "Identify skills and training requirements"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "D x V x F > R is a diagnostic tool to pinpoint whether Dissatisfaction, Vision, or First Steps need reinforcement to overcome resistance.",
         distractor: "Cost-benefit is financial; detailed plans belong to project plans; skills training is handled by ADKAR or capability frameworks."
       },
@@ -1143,8 +1114,7 @@
           "Communication channels",
           "Engagement strategy"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "Defining desired outcomes dictates the appropriate engagement level, channels, and schedules.",
         distractor: "Meeting schedules and channels are downstream tactical details; the engagement strategy itself is shaped by desired outcomes."
       },
@@ -1158,8 +1128,7 @@
           "Skills",
           "Systems"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "Leader time allocation, budget distribution, and office layout are major symbolic signals of organizational priorities.",
         distractor: "Behaviours are day-to-day actions; Systems are policies/IT tools; Skills is not one of Taylor's three mechanisms."
       },
@@ -1173,8 +1142,7 @@
           "The change ability of the organization",
           "The nature of change"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "A poor change history generates cynicism and fatigue, while positive past changes build trust and resilience.",
         distractor: "The environment is external PESTLE factors; Change ability is maturity/resource capability; Nature of change describes scope/type."
       },
@@ -1188,8 +1156,7 @@
           "Both 1 and 2 are true",
           "Neither 1 or 2 is true"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "For change to happen, Survival Anxiety must exceed Learning Anxiety. Lowering learning anxiety reduces resistance.",
         distractor: "Both are true: survival anxiety supplies urgency to move, while learning anxiety must be reduced via psychological safety."
       },
@@ -1203,8 +1170,7 @@
           "Empowerment",
           "Empathy"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "Loss of control or territory is directly addressed by involving people and giving them choices (Empowerment).",
         distractor: "Information resolves uncertainty; Incentive resolves lack of motivation; Empathy validates emotions but doesn't restore control."
       },
@@ -1218,8 +1184,7 @@
           "Technology",
           "Amount of information"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "Empowering autonomous teams flattens multi-tiered managerial layers and eliminates hierarchical communication bottlenecks.",
         distractor: "Culture is shared values, not a structural pathway; Technology and Amount of Information are medium/volume barriers."
       },
@@ -1233,8 +1198,7 @@
           "Reward",
           "Reach"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "Relevance ensures every metric directly tracks what matters toward business and adoption outcomes.",
         distractor: "Risk belongs to the Risk Register; Reward relates to incentives; Reach is a specific communication metric rather than a scorecard criterion."
       },
@@ -1248,8 +1212,7 @@
           "Psychological safety",
           "Clear boundaries"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "Clear boundaries outline what is negotiable vs non-negotiable, directing stakeholder input where it truly counts.",
         distractor: "Hierarchy often impedes input; Technology is a transmission tool; Psychological safety makes it safe to speak but doesn't define scope."
       },
@@ -1263,8 +1226,7 @@
           "Both 1 and 2 are true",
           "Neither 1 or 2 is true"
         ],
-        correct: 3,
-        userResponse: 3,
+        correct: 3, // D
         takeaway: "Both statements are reversed! Qualitative explains why/how; Quantitative is numerical and countable.",
         distractor: "Statement 1 describes qualitative insights; Statement 2 describes quantitative metrics."
       },
@@ -1278,8 +1240,7 @@
           "Explain how the change will be managed",
           "Justify the change"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "A Change Strategy explains how the human side of change will be approached, governed, and supported.",
         distractor: "Justifying the change is the Business Case; Reporting progress is the Status Report; Recommending suppliers is Procurement."
       },
@@ -1293,8 +1254,7 @@
           "Use of narrative and story",
           "Animation and graphics"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "Sharing personal experiences through narrative and storytelling creates authentic, emotionally resonant engagement.",
         distractor: "Symbolic actions are non-verbal signals; Metaphors compare concepts abstractly; Graphics are visual formats."
       },
@@ -1308,8 +1268,7 @@
           "Commitment and follow-through",
           "Constructive conflict about ideas"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "Focus on team results sits at the top apex of Lencioni's pyramid and depends on all preceding levels.",
         distractor: "Conflict builds on Trust; Commitment builds on Conflict; Accountability builds on Commitment."
       },
@@ -1323,8 +1282,7 @@
           "Finding the system easy to use and navigate",
           "Being able to perform all existing work but unaware of new functions"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "The 'Learning Dip' occurs in Stage 2 (Conscious Incompetence), where sudden awareness of gaps creates friction and confusion.",
         distractor: "Option A is moving into competence; Option C is unconscious competence; Option D is unconscious incompetence."
       },
@@ -1338,8 +1296,7 @@
           "Visual",
           "Verbal"
         ],
-        correct: 2,
-        userResponse: 3,
+        correct: 2, // C (Per official APMG answer key)
         takeaway: "According to the official APMG syllabus key, Visual communication (diagrams, roadmaps, process models) is tested as the most effective standardized anchor for contextualizing complex multi-group messages across diverse stakeholder audiences.",
         distractor: "Verbal (D) is highly adaptable in dialogue, but the standardized exam rubric pairs broad structural contextualization across diverse teams with Visual artifacts."
       },
@@ -1353,8 +1310,7 @@
           "Attending a seminar on the change",
           "Attempting the change and reviewing progress with their manager"
         ],
-        correct: 2,
-        userResponse: 2,
+        correct: 2, // C
         takeaway: "Theorists learn through concepts, models, and logical structures, making formal seminars the ideal fit.",
         distractor: "Coaching appeals to Pragmatists; Observation appeals to Reflectors; Hands-on attempts appeal to Activists."
       },
@@ -1368,8 +1324,7 @@
           "Both 1 and 2 are true",
           "Neither 1 or 2 is true"
         ],
-        correct: 1,
-        userResponse: 1,
+        correct: 1, // B
         takeaway: "Diverse teams broaden perspectives (Statement 1 is false), but harmonizing differing views requires more discussion time (Statement 2 is true).",
         distractor: "Statement 1 is false because diverse backgrounds prevent narrow groupthink."
       },
@@ -1383,16 +1338,14 @@
           "Synchronous",
           "Engaging"
         ],
-        correct: 0,
-        userResponse: 0,
+        correct: 0, // A
         takeaway: "Posters broadcast information in a single direction without immediate channels for feedback (One way).",
         distractor: "Posters are lean (low richness), asynchronous (not real-time), and engaging is an outcome rather than a structural trait."
       }
     ];
 
     let currentFilter = "ALL";
-    let answersState = {};
-    let showingOnlyMistakes = false;
+    let answersState = {}; // Fresh unselected state: { qId: selectedOptionIndex }
 
     function renderQuestions() {
       const container = document.getElementById("questions-container");
@@ -1403,9 +1356,7 @@
         const matchesDomain = (currentFilter === "ALL" || q.domain === currentFilter);
         const matchesSearch = q.question.toLowerCase().includes(searchVal) || 
                               q.takeaway.toLowerCase().includes(searchVal);
-        const isMistake = q.userResponse !== q.correct;
-        const matchesMistakes = !showingOnlyMistakes || isMistake;
-        return matchesDomain && matchesSearch && matchesMistakes;
+        return matchesDomain && matchesSearch;
       });
 
       if (filtered.length === 0) {
@@ -1415,48 +1366,56 @@
 
       filtered.forEach(q => {
         const isAnswered = answersState[q.id] !== undefined;
-        const selectedOpt = isAnswered ? answersState[q.id] : q.userResponse;
-        const wasUserMistakeInExam = q.userResponse !== q.correct;
+        const selectedOpt = isAnswered ? answersState[q.id] : null;
+        const isCorrect = isAnswered && selectedOpt === q.correct;
 
         const card = document.createElement("div");
         card.className = "bg-white p-4 rounded-2xl border border-slate-200 shadow-xs space-y-3";
         
         let optionsHtml = q.options.map((opt, idx) => {
-          let btnClass = "w-full text-left p-3 rounded-xl border text-xs transition-all ";
+          let btnClass = "w-full text-left p-3 rounded-xl border text-xs transition-all flex items-start gap-2 ";
           
           if (!isAnswered) {
-            if (idx === q.correct) {
-              btnClass += "border-emerald-300 bg-emerald-50/70 text-emerald-900 font-semibold ring-1 ring-emerald-400";
-            } else if (idx === q.userResponse && wasUserMistakeInExam) {
-              btnClass += "border-rose-300 bg-rose-50 text-rose-800 line-through";
-            } else {
-              btnClass += "border-slate-100 bg-slate-50/50 text-slate-600";
-            }
+            btnClass += "border-slate-200 bg-slate-50/70 hover:bg-slate-100/80 text-slate-700 hover:border-slate-300";
           } else {
             if (idx === q.correct) {
-              btnClass += "border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold ring-1 ring-emerald-400";
-            } else if (idx === selectedOpt && selectedOpt !== q.correct) {
-              btnClass += "border-rose-300 bg-rose-50 text-rose-800 line-through";
+              btnClass += "border-emerald-400 bg-emerald-50 text-emerald-900 font-semibold ring-1 ring-emerald-400";
+            } else if (idx === selectedOpt && !isCorrect) {
+              btnClass += "border-rose-400 bg-rose-50 text-rose-800 line-through";
             } else {
-              btnClass += "border-slate-100 bg-slate-50/40 text-slate-400";
+              btnClass += "border-slate-100 bg-slate-50/40 text-slate-400 opacity-60";
             }
           }
 
           return `<button onclick="selectOption(${q.id}, ${idx})" class="${btnClass}">
-            <span class="inline-block w-5 font-bold">${String.fromCharCode(65 + idx)}.</span> ${opt}
+            <span class="inline-block w-5 font-bold shrink-0">${String.fromCharCode(65 + idx)}.</span>
+            <span class="leading-relaxed">${opt}</span>
           </button>`;
         }).join("");
 
-        let explanationHtml = `
-          <div class="mt-3 pt-3 border-t border-slate-100 space-y-2 text-xs">
-            <div class="bg-emerald-50/70 p-2.5 rounded-xl border border-emerald-100 text-emerald-900">
-              <span class="font-bold">Key Takeaway:</span> ${q.takeaway}
+        let explanationHtml = "";
+        if (isAnswered) {
+          explanationHtml = `
+            <div class="mt-3 pt-3 border-t border-slate-100 space-y-2 text-xs animate-fadeIn">
+              <div class="${isCorrect ? 'bg-emerald-50/90 border-emerald-200 text-emerald-950' : 'bg-rose-50/90 border-rose-200 text-rose-950'} p-3 rounded-xl border">
+                <span class="font-bold flex items-center gap-1.5 mb-1">
+                  ${isCorrect ? '✅ Correct Answer!' : '❌ Incorrect Selection'} (Correct: Option ${String.fromCharCode(65 + q.correct)})
+                </span>
+                <p class="leading-relaxed text-[11px]"><span class="font-semibold">Key Takeaway:</span> ${q.takeaway}</p>
+              </div>
+              <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-slate-600 text-[11px] leading-relaxed">
+                <span class="font-bold text-slate-800">Distractor Rationale:</span> ${q.distractor}
+              </div>
             </div>
-            <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-slate-600">
-              <span class="font-bold">Distractor Rationale:</span> ${q.distractor}
-            </div>
-          </div>
-        `;
+          `;
+        }
+
+        let statusBadge = "";
+        if (isAnswered) {
+          statusBadge = isCorrect ? 
+            '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">✓ Correct</span>' : 
+            '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700">✗ Incorrect</span>';
+        }
 
         card.innerHTML = `
           <div class="flex items-center justify-between">
@@ -1464,9 +1423,7 @@
               Q${q.id} • ${q.domain}
             </span>
             <div class="flex items-center gap-1.5">
-              ${wasUserMistakeInExam ? 
-                '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-700">Exam Miss (Q' + q.id + ')</span>' : 
-                '<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">✓ Exam Correct</span>'}
+              ${statusBadge}
             </div>
           </div>
           <p class="text-xs font-semibold text-slate-800 leading-snug whitespace-pre-line">${q.question}</p>
@@ -1482,29 +1439,44 @@
       updateScoreBadge();
     }
 
-    function toggleExamFilter(mode) {
-      showingOnlyMistakes = !showingOnlyMistakes;
-      const btn = document.getElementById("mistake-filter-btn");
-      if (showingOnlyMistakes) {
-        btn.textContent = "Show All 50 Questions";
-        btn.className = "text-[11px] font-semibold bg-amber-500 text-slate-900 px-2.5 py-1.5 rounded-xl transition-all";
-      } else {
-        btn.textContent = "Review 6 Missed ⚠️";
-        btn.className = "text-[11px] font-semibold bg-emerald-800/80 hover:bg-emerald-900 border border-emerald-400/40 px-2.5 py-1.5 rounded-xl transition-all";
-      }
-      renderQuestions();
-    }
-
     function selectOption(qId, optionIdx) {
       answersState[qId] = optionIdx;
       renderQuestions();
     }
 
+    function resetSimulation() {
+      answersState = {};
+      renderQuestions();
+    }
+
     function updateScoreBadge() {
+      let correctCount = 0;
+      let totalAnswered = 0;
+
+      examQuestions.forEach(q => {
+        if (answersState[q.id] !== undefined) {
+          totalAnswered++;
+          if (answersState[q.id] === q.correct) {
+            correctCount++;
+          }
+        }
+      });
+
+      document.getElementById("current-score").textContent = correctCount;
+      document.getElementById("answered-counter").textContent = `(${totalAnswered} answered)`;
+      
       const badge = document.getElementById("score-badge");
       badge.classList.remove("hidden");
-      const userTotal = 44;
-      badge.textContent = `44/50 Exam Score`;
+      badge.textContent = `${correctCount}/${totalAnswered || 0} Score`;
+
+      const passInd = document.getElementById("pass-indicator");
+      if (correctCount >= 25) {
+        passInd.className = "text-xs font-bold bg-emerald-500 text-white px-2 py-0.5 rounded-full";
+        passInd.textContent = "PASSED (≥ 25)";
+      } else {
+        passInd.className = "text-xs font-bold bg-white/20 text-white px-2 py-0.5 rounded-full";
+        passInd.textContent = "Pass: 25/50 (50%)";
+      }
     }
 
     function switchTab(tabId) {
